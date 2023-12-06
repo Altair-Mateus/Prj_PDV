@@ -2,13 +2,13 @@ program prjPDV;
 
 uses
   Vcl.Forms,
-  pdv.View.Principal in 'src\View\pdv.View.Principal.pas' {Form1};
+  pdv.View.Principal in 'src\View\pdv.View.Principal.pas' {frmPrincipal};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.Run;
 end.
