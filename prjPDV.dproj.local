@@ -12,10 +12,15 @@
     <Transaction>2023/08/11 13:48:36.000.965,=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2023/08/11 19:29:18.000.510,=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2023/10/03 20:34:08.000.299,=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/12/05 19:39:50.311,=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/12/05 19:43:36.624,C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\prjPDV.dproj=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2023/12/05 19:47:43.644,D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.Principal.pas=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/12/05 19:47:43.644,D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.Principal.dfm=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2023/12/05 19:47:58.388,D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\prjPDV.dproj=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\prjPDV.dproj</Transaction>
+    <Transaction>2023/12/05 19:39:50.000.311,=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/12/05 19:43:36.000.624,C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\prjPDV.dproj</Transaction>
+    <Transaction>2023/12/05 19:47:43.000.644,C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.Principal.dfm</Transaction>
+    <Transaction>2023/12/05 19:47:43.000.644,C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.Principal.pas</Transaction>
+    <Transaction>2023/12/05 19:47:58.000.388,C:\Users\taico\OneDrive\Documentos\Embarcadero\Studio\Projects\prjPDV.dproj=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\prjPDV.dproj</Transaction>
+    <Transaction>2023/12/06 20:03:42.000.978,=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\Unit1.pas</Transaction>
+    <Transaction>2023/12/06 20:05:46.000.536,D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.PLogin.pas=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\Unit1.pas</Transaction>
+    <Transaction>2023/12/06 20:05:46.000.536,D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.PLogin.dfm=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\Unit1.dfm</Transaction>
+    <Transaction>2023/12/06 20:06:04.000.058,D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.Login.pas=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.PLogin.pas</Transaction>
+    <Transaction>2023/12/06 20:06:04.000.058,D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.Login.dfm=D:\Projetos Desenvolvimento\New Delphi\Projeto_PDV\src\View\pdv.View.PLogin.dfm</Transaction>
   </Transactions>
 </BorlandProject>
