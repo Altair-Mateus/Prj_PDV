@@ -27,6 +27,7 @@ type
     shpBtnLogin: TShape;
     btnLogar: TSpeedButton;
     imgLogin: TImage;
+    procedure btnLogarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,5 +40,17 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmLogin.btnLogarClick(Sender: TObject);
+begin
+
+  if not ((edtUsuario.Text = 'Altair') and (edtSenha.Text = '123')) then
+  begin
+    ShowMessage('Logins e senha inválido!');
+    exit
+  end;
+    close;
+
+end;
 
 end.

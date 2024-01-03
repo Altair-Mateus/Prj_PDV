@@ -33,7 +33,7 @@ type
     pnlMaisFuncoes: TPanel;
     shpMaisFuncoes: TShape;
     btnMaisFuncoes: TSpeedButton;
-    DBGrid1: TDBGrid;
+    gridProdutos: TDBGrid;
     pnlTotalCompra: TPanel;
     lblTitTotalCompa: TLabel;
     shpTotalCompra: TShape;
@@ -62,11 +62,15 @@ type
     pnlImg: TPanel;
     imgProduto: TImage;
     pnlMaster: TPanel;
+    dsItens: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+
   private
     FLogin: TfrmLogin;
     procedure MontarBotoes;
+    procedure FixarForm;
 
   public
     { Public declarations }
@@ -78,10 +82,31 @@ var
 implementation
 {$R *.dfm}
 
+uses
+  pdv.Model.Dados;
+
+procedure TfrmPrincipal.FixarForm;
+begin
+
+  Self.WindowState := TWindowState.wsNormal;
+  Self.Position    := poScreenCenter;
+  Self.Constraints.MaxHeight := Self.ClientHeight;
+  Self.Constraints.MinHeight := Self.ClientHeight;
+  Self.Constraints.MaxWidth  := Self.ClientWidth;
+  Self.Constraints.MinWidth  := Self.ClientWidth;
+
+end;
+
+procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FLogin.Free;
+end;
+
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
 
   MontarBotoes;
+
 
 end;
 
@@ -91,6 +116,8 @@ begin
   FLogin := TfrmLogin.Create(nil);
   FLogin.Parent := pnlMaster;
   Flogin.Show;
+
+  FixarForm;
 
 
 end;

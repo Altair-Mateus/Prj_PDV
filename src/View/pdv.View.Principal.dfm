@@ -2,22 +2,24 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'PDV'
-  ClientHeight = 630
-  ClientWidth = 1124
+  ClientHeight = 663
+  ClientWidth = 1177
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -16
   Font.Name = 'Tahoma'
   Font.Style = []
+  Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   TextHeight = 19
   object pnlMaster: TPanel
     Left = 0
     Top = 0
-    Width = 1124
-    Height = 630
+    Width = 1177
+    Height = 663
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -26,8 +28,8 @@ object frmPrincipal: TfrmPrincipal
     object pnlContainer: TPanel
       Left = 0
       Top = 0
-      Width = 1124
-      Height = 630
+      Width = 1177
+      Height = 663
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
@@ -36,7 +38,7 @@ object frmPrincipal: TfrmPrincipal
       object pnlTitle: TPanel
         Left = 0
         Top = 0
-        Width = 1124
+        Width = 1177
         Height = 60
         Align = alTop
         BevelOuter = bvNone
@@ -55,18 +57,18 @@ object frmPrincipal: TfrmPrincipal
       object pnlMain: TPanel
         Left = 0
         Top = 60
-        Width = 1124
-        Height = 470
+        Width = 1177
+        Height = 503
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
         ExplicitWidth = 1120
         ExplicitHeight = 469
         object pnlOperacoes: TPanel
-          Left = 724
+          Left = 777
           Top = 0
           Width = 400
-          Height = 470
+          Height = 503
           Align = alRight
           BevelOuter = bvNone
           Padding.Top = 5
@@ -78,7 +80,7 @@ object frmPrincipal: TfrmPrincipal
           object pnlTotalCompra: TPanel
             AlignWithMargins = True
             Left = 3
-            Top = 377
+            Top = 410
             Width = 394
             Height = 70
             Align = alBottom
@@ -153,7 +155,7 @@ object frmPrincipal: TfrmPrincipal
           object pnlSubTotal: TPanel
             AlignWithMargins = True
             Left = 3
-            Top = 301
+            Top = 334
             Width = 394
             Height = 70
             Align = alBottom
@@ -228,7 +230,7 @@ object frmPrincipal: TfrmPrincipal
           object pnlQuantidades: TPanel
             AlignWithMargins = True
             Left = 3
-            Top = 225
+            Top = 258
             Width = 394
             Height = 70
             Align = alBottom
@@ -304,7 +306,7 @@ object frmPrincipal: TfrmPrincipal
           object pnlPreco: TPanel
             AlignWithMargins = True
             Left = 3
-            Top = 149
+            Top = 182
             Width = 394
             Height = 70
             Align = alBottom
@@ -379,7 +381,7 @@ object frmPrincipal: TfrmPrincipal
           object pnlProduto: TPanel
             AlignWithMargins = True
             Left = 3
-            Top = 73
+            Top = 106
             Width = 394
             Height = 70
             Align = alBottom
@@ -456,7 +458,7 @@ object frmPrincipal: TfrmPrincipal
             Left = 0
             Top = 5
             Width = 400
-            Height = 65
+            Height = 98
             Align = alClient
             BevelOuter = bvNone
             Padding.Left = 120
@@ -464,12 +466,12 @@ object frmPrincipal: TfrmPrincipal
             Padding.Right = 120
             Padding.Bottom = 10
             TabOrder = 5
-            ExplicitHeight = 64
+            ExplicitHeight = 65
             object imgProduto: TImage
               Left = 120
               Top = 10
               Width = 160
-              Height = 45
+              Height = 78
               Align = alClient
               Picture.Data = {
                 0A544A504547496D616765A1250000FFD8FFE000104A46494600010100000100
@@ -783,8 +785,8 @@ object frmPrincipal: TfrmPrincipal
         object pnlGrid: TPanel
           Left = 0
           Top = 0
-          Width = 724
-          Height = 470
+          Width = 777
+          Height = 503
           Align = alClient
           BevelOuter = bvNone
           Padding.Left = 5
@@ -794,26 +796,112 @@ object frmPrincipal: TfrmPrincipal
           TabOrder = 1
           ExplicitWidth = 720
           ExplicitHeight = 469
-          object DBGrid1: TDBGrid
+          object gridProdutos: TDBGrid
             Left = 5
             Top = 5
-            Width = 714
-            Height = 460
+            Width = 767
+            Height = 493
             Align = alClient
             BorderStyle = bsNone
+            DataSource = dsItens
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            Options = [dgTitles, dgRowLines, dgTabs, dgRowSelect, dgTitleHotTrack]
+            ParentFont = False
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -16
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'codigo'
+                Title.Caption = 'C'#243'digo'
+                Title.Font.Charset = DEFAULT_CHARSET
+                Title.Font.Color = clWindowText
+                Title.Font.Height = -13
+                Title.Font.Name = 'Tahoma'
+                Title.Font.Style = []
+                Width = 80
+                Visible = True
+              end
+              item
+                Alignment = taCenter
+                Expanded = False
+                FieldName = 'item'
+                Title.Alignment = taCenter
+                Title.Caption = 'Item'
+                Title.Font.Charset = DEFAULT_CHARSET
+                Title.Font.Color = clWindowText
+                Title.Font.Height = -13
+                Title.Font.Name = 'Tahoma'
+                Title.Font.Style = []
+                Width = 40
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'descricao'
+                Title.Caption = 'Descri'#231#227'o do Produto'
+                Title.Font.Charset = DEFAULT_CHARSET
+                Title.Font.Color = clWindowText
+                Title.Font.Height = -13
+                Title.Font.Name = 'Tahoma'
+                Title.Font.Style = []
+                Width = 350
+                Visible = True
+              end
+              item
+                Alignment = taLeftJustify
+                Expanded = False
+                FieldName = 'valorunitario'
+                Title.Caption = 'Valor Unit'#225'rio'
+                Title.Font.Charset = DEFAULT_CHARSET
+                Title.Font.Color = clWindowText
+                Title.Font.Height = -13
+                Title.Font.Name = 'Tahoma'
+                Title.Font.Style = []
+                Width = 88
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'quantidade'
+                Title.Alignment = taRightJustify
+                Title.Caption = 'Quantidade'
+                Title.Font.Charset = DEFAULT_CHARSET
+                Title.Font.Color = clWindowText
+                Title.Font.Height = -13
+                Title.Font.Name = 'Tahoma'
+                Title.Font.Style = []
+                Width = 76
+                Visible = True
+              end
+              item
+                Alignment = taLeftJustify
+                Expanded = False
+                FieldName = 'subtotal'
+                Title.Caption = 'Sub-Total'
+                Title.Font.Charset = DEFAULT_CHARSET
+                Title.Font.Color = clWindowText
+                Title.Font.Height = -13
+                Title.Font.Name = 'Tahoma'
+                Title.Font.Style = []
+                Width = 78
+                Visible = True
+              end>
           end
         end
       end
       object pnlButton: TPanel
         Left = 0
-        Top = 530
-        Width = 1124
+        Top = 563
+        Width = 1177
         Height = 100
         Align = alBottom
         BevelOuter = bvNone
@@ -829,7 +917,7 @@ object frmPrincipal: TfrmPrincipal
           AlignWithMargins = True
           Left = 5
           Top = 10
-          Width = 185
+          Width = 190
           Height = 80
           Margins.Left = 0
           Margins.Top = 0
@@ -840,7 +928,7 @@ object frmPrincipal: TfrmPrincipal
           object shpCancelarOp: TShape
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Brush.Color = 14342621
@@ -854,7 +942,7 @@ object frmPrincipal: TfrmPrincipal
           object btnCancelarOp: TSpeedButton
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Caption = 'Cancelar Opera'#231#227'o'
@@ -866,9 +954,9 @@ object frmPrincipal: TfrmPrincipal
         end
         object pnlConsultarPreco: TPanel
           AlignWithMargins = True
-          Left = 193
+          Left = 198
           Top = 10
-          Width = 185
+          Width = 190
           Height = 80
           Margins.Left = 0
           Margins.Top = 0
@@ -879,7 +967,7 @@ object frmPrincipal: TfrmPrincipal
           object shpConsultarPreco: TShape
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Brush.Color = 14342621
@@ -893,7 +981,7 @@ object frmPrincipal: TfrmPrincipal
           object btnConsultarPreco: TSpeedButton
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Caption = 'Consultar Pre'#231'o'
@@ -905,9 +993,9 @@ object frmPrincipal: TfrmPrincipal
         end
         object pnlAbrirCaixa: TPanel
           AlignWithMargins = True
-          Left = 381
+          Left = 391
           Top = 10
-          Width = 185
+          Width = 190
           Height = 80
           Margins.Left = 0
           Margins.Top = 0
@@ -915,10 +1003,11 @@ object frmPrincipal: TfrmPrincipal
           Align = alLeft
           BevelOuter = bvNone
           TabOrder = 2
+          ExplicitLeft = 386
           object shpAbrirCaixa: TShape
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Brush.Color = 14342621
@@ -932,7 +1021,7 @@ object frmPrincipal: TfrmPrincipal
           object btnAbrirCaixa: TSpeedButton
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Caption = 'Abrir Caixa'
@@ -944,9 +1033,9 @@ object frmPrincipal: TfrmPrincipal
         end
         object pnlCancelarVenda: TPanel
           AlignWithMargins = True
-          Left = 569
+          Left = 584
           Top = 10
-          Width = 185
+          Width = 190
           Height = 80
           Margins.Left = 0
           Margins.Top = 0
@@ -954,10 +1043,11 @@ object frmPrincipal: TfrmPrincipal
           Align = alLeft
           BevelOuter = bvNone
           TabOrder = 3
+          ExplicitLeft = 579
           object shpCancelarVenda: TShape
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Brush.Color = 14342621
@@ -971,7 +1061,7 @@ object frmPrincipal: TfrmPrincipal
           object btnCancelarVenda: TSpeedButton
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Caption = 'Cancelar Venda'
@@ -983,9 +1073,9 @@ object frmPrincipal: TfrmPrincipal
         end
         object pnlCancelarItem: TPanel
           AlignWithMargins = True
-          Left = 757
+          Left = 777
           Top = 10
-          Width = 185
+          Width = 190
           Height = 80
           Margins.Left = 0
           Margins.Top = 0
@@ -993,10 +1083,11 @@ object frmPrincipal: TfrmPrincipal
           Align = alLeft
           BevelOuter = bvNone
           TabOrder = 4
+          ExplicitLeft = 762
           object shpCancelarItem: TShape
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Brush.Color = 14342621
@@ -1010,18 +1101,19 @@ object frmPrincipal: TfrmPrincipal
           object btnCancelarItem: TSpeedButton
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Caption = 'Cancelar Item'
             ExplicitTop = -4
+            ExplicitWidth = 185
           end
         end
         object pnlMaisFuncoes: TPanel
           AlignWithMargins = True
-          Left = 945
+          Left = 970
           Top = 10
-          Width = 185
+          Width = 190
           Height = 80
           Margins.Left = 0
           Margins.Top = 0
@@ -1032,7 +1124,7 @@ object frmPrincipal: TfrmPrincipal
           object shpMaisFuncoes: TShape
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Brush.Color = 14342621
@@ -1046,7 +1138,7 @@ object frmPrincipal: TfrmPrincipal
           object btnMaisFuncoes: TSpeedButton
             Left = 0
             Top = 0
-            Width = 185
+            Width = 190
             Height = 80
             Align = alClient
             Caption = 'Mais Fun'#231#245'es'
@@ -1058,5 +1150,10 @@ object frmPrincipal: TfrmPrincipal
         end
       end
     end
+  end
+  object dsItens: TDataSource
+    DataSet = dmDados.cdsItens
+    Left = 584
+    Top = 336
   end
 end
