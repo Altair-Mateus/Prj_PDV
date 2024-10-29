@@ -1,6 +1,7 @@
-object Form1: TForm1
+object frmComponenteTransparencia: TfrmComponenteTransparencia
   Left = 0
   Top = 0
+  Align = alClient
   AlphaBlend = True
   AlphaBlendValue = 200
   BorderStyle = bsNone

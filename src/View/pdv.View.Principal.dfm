@@ -10,9 +10,11 @@ object frmPrincipal: TfrmPrincipal
   Font.Height = -16
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   TextHeight = 19
   object pnlMaster: TPanel
@@ -23,8 +25,8 @@ object frmPrincipal: TfrmPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 1120
-    ExplicitHeight = 629
+    ExplicitWidth = 1173
+    ExplicitHeight = 662
     object pnlContainer: TPanel
       Left = 0
       Top = 0
@@ -33,8 +35,8 @@ object frmPrincipal: TfrmPrincipal
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitWidth = 1120
-      ExplicitHeight = 629
+      ExplicitWidth = 1173
+      ExplicitHeight = 662
       object pnlTitle: TPanel
         Left = 0
         Top = 0
@@ -52,7 +54,7 @@ object frmPrincipal: TfrmPrincipal
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 1120
+        ExplicitWidth = 1173
       end
       object pnlMain: TPanel
         Left = 0
@@ -62,8 +64,8 @@ object frmPrincipal: TfrmPrincipal
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitWidth = 1120
-        ExplicitHeight = 469
+        ExplicitWidth = 1173
+        ExplicitHeight = 502
         object pnlOperacoes: TPanel
           Left = 777
           Top = 0
@@ -75,8 +77,8 @@ object frmPrincipal: TfrmPrincipal
           Padding.Bottom = 20
           ParentBackground = False
           TabOrder = 0
-          ExplicitLeft = 720
-          ExplicitHeight = 469
+          ExplicitLeft = 773
+          ExplicitHeight = 502
           object pnlTotalCompra: TPanel
             AlignWithMargins = True
             Left = 3
@@ -86,7 +88,7 @@ object frmPrincipal: TfrmPrincipal
             Align = alBottom
             BevelOuter = bvNone
             TabOrder = 0
-            ExplicitTop = 376
+            ExplicitTop = 409
             object lblTitTotalCompa: TLabel
               AlignWithMargins = True
               Left = 3
@@ -161,7 +163,7 @@ object frmPrincipal: TfrmPrincipal
             Align = alBottom
             BevelOuter = bvNone
             TabOrder = 1
-            ExplicitTop = 300
+            ExplicitTop = 333
             object lblTitSubTotal: TLabel
               AlignWithMargins = True
               Left = 3
@@ -236,7 +238,7 @@ object frmPrincipal: TfrmPrincipal
             Align = alBottom
             BevelOuter = bvNone
             TabOrder = 2
-            ExplicitTop = 224
+            ExplicitTop = 257
             object lblTitQuantidade: TLabel
               AlignWithMargins = True
               Left = 3
@@ -312,7 +314,7 @@ object frmPrincipal: TfrmPrincipal
             Align = alBottom
             BevelOuter = bvNone
             TabOrder = 3
-            ExplicitTop = 148
+            ExplicitTop = 181
             object lblTitPreco: TLabel
               AlignWithMargins = True
               Left = 3
@@ -387,7 +389,7 @@ object frmPrincipal: TfrmPrincipal
             Align = alBottom
             BevelOuter = bvNone
             TabOrder = 4
-            ExplicitTop = 72
+            ExplicitTop = 105
             object lblTitProduto: TLabel
               AlignWithMargins = True
               Left = 3
@@ -466,7 +468,7 @@ object frmPrincipal: TfrmPrincipal
             Padding.Right = 120
             Padding.Bottom = 10
             TabOrder = 5
-            ExplicitHeight = 65
+            ExplicitHeight = 97
             object imgProduto: TImage
               Left = 120
               Top = 10
@@ -794,8 +796,8 @@ object frmPrincipal: TfrmPrincipal
           Padding.Right = 5
           Padding.Bottom = 5
           TabOrder = 1
-          ExplicitWidth = 720
-          ExplicitHeight = 469
+          ExplicitWidth = 773
+          ExplicitHeight = 502
           object gridProdutos: TDBGrid
             Left = 5
             Top = 5
@@ -911,8 +913,8 @@ object frmPrincipal: TfrmPrincipal
         Padding.Bottom = 10
         ParentBackground = False
         TabOrder = 2
-        ExplicitTop = 529
-        ExplicitWidth = 1120
+        ExplicitTop = 562
+        ExplicitWidth = 1173
         object pnlCancelarOp: TPanel
           AlignWithMargins = True
           Left = 5
@@ -1003,7 +1005,6 @@ object frmPrincipal: TfrmPrincipal
           Align = alLeft
           BevelOuter = bvNone
           TabOrder = 2
-          ExplicitLeft = 386
           object shpAbrirCaixa: TShape
             Left = 0
             Top = 0
@@ -1043,7 +1044,6 @@ object frmPrincipal: TfrmPrincipal
           Align = alLeft
           BevelOuter = bvNone
           TabOrder = 3
-          ExplicitLeft = 579
           object shpCancelarVenda: TShape
             Left = 0
             Top = 0
@@ -1083,7 +1083,6 @@ object frmPrincipal: TfrmPrincipal
           Align = alLeft
           BevelOuter = bvNone
           TabOrder = 4
-          ExplicitLeft = 762
           object shpCancelarItem: TShape
             Left = 0
             Top = 0
@@ -1142,10 +1141,156 @@ object frmPrincipal: TfrmPrincipal
             Height = 80
             Align = alClient
             Caption = 'Mais Fun'#231#245'es'
+            OnClick = btnMaisFuncoesClick
             ExplicitLeft = 56
             ExplicitTop = 24
             ExplicitWidth = 23
             ExplicitHeight = 22
+          end
+        end
+      end
+      object SplitViewFuncoes: TSplitView
+        Left = 1177
+        Top = 60
+        Width = 0
+        Height = 503
+        AnimationDelay = 0
+        Opened = False
+        OpenedWidth = 200
+        Placement = svpRight
+        TabOrder = 3
+        UseAnimation = False
+        ExplicitLeft = 1173
+        ExplicitHeight = 502
+        object pnlSplit: TPanel
+          Left = 0
+          Top = 0
+          Width = 0
+          Height = 503
+          Align = alClient
+          BevelOuter = bvNone
+          ParentBackground = False
+          TabOrder = 0
+          ExplicitHeight = 502
+          object pnlSupSan: TPanel
+            Left = 0
+            Top = 205
+            Width = 0
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Suprimento/Sangria (CTRL+F4)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 0
+            object Shape2: TShape
+              Left = 0
+              Top = 40
+              Width = 0
+              Height = 1
+              Align = alBottom
+              ExplicitTop = -24
+              ExplicitWidth = 200
+            end
+          end
+          object pnlDescItem: TPanel
+            Left = 0
+            Top = 164
+            Width = 0
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Desconto Item (F11)'
+            TabOrder = 1
+            object Shape3: TShape
+              Left = 0
+              Top = 40
+              Width = 0
+              Height = 1
+              Align = alBottom
+              ExplicitTop = -24
+              ExplicitWidth = 200
+            end
+          end
+          object pnlMultiplicar: TPanel
+            Left = 0
+            Top = 123
+            Width = 0
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Multiplicar(*)'
+            TabOrder = 2
+            object Shape4: TShape
+              Left = 0
+              Top = 40
+              Width = 0
+              Height = 1
+              Align = alBottom
+              ExplicitTop = -24
+              ExplicitWidth = 200
+            end
+          end
+          object pnlFechaVenda: TPanel
+            Left = 0
+            Top = 82
+            Width = 0
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Fechar Venda (F7)'
+            TabOrder = 3
+            object Shape5: TShape
+              Left = 0
+              Top = 40
+              Width = 0
+              Height = 1
+              Align = alBottom
+              ExplicitTop = -24
+              ExplicitWidth = 200
+            end
+          end
+          object pnlNovaVenda: TPanel
+            Left = 0
+            Top = 41
+            Width = 0
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Nova Venda (F3)'
+            TabOrder = 4
+            object Shape6: TShape
+              Left = 0
+              Top = 40
+              Width = 0
+              Height = 1
+              Align = alBottom
+              ExplicitTop = -24
+              ExplicitWidth = 200
+            end
+          end
+          object pnlCPF: TPanel
+            Left = 0
+            Top = 0
+            Width = 0
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Informar CPF (F9)'
+            TabOrder = 5
+            object Shape7: TShape
+              Left = 0
+              Top = 40
+              Width = 0
+              Height = 1
+              Align = alBottom
+              ExplicitTop = -24
+              ExplicitWidth = 200
+            end
           end
         end
       end

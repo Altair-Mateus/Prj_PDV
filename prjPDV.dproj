@@ -111,7 +111,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\View\componente\pdv.View.Componente.Transparencia.pas">
-            <Form>Form1</Form>
+            <Form>frmComponenteTransparencia</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\model\pdv.Model.Dados.pas">
