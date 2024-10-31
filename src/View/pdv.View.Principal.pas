@@ -3,7 +3,8 @@ unit pdv.View.Principal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.jpeg, pdv.View.Login,
   Vcl.WinXCtrls;
@@ -98,6 +99,7 @@ var
   frmPrincipal: TfrmPrincipal;
 
 implementation
+
 {$R *.dfm}
 
 uses
@@ -112,11 +114,11 @@ procedure TfrmPrincipal.FixarForm;
 begin
 
   Self.WindowState := TWindowState.wsNormal;
-  Self.Position    := poScreenCenter;
+  Self.Position := poScreenCenter;
   Self.Constraints.MaxHeight := Self.ClientHeight;
   Self.Constraints.MinHeight := Self.ClientHeight;
-  Self.Constraints.MaxWidth  := Self.ClientWidth;
-  Self.Constraints.MinWidth  := Self.ClientWidth;
+  Self.Constraints.MaxWidth := Self.ClientWidth;
+  Self.Constraints.MinWidth := Self.ClientWidth;
 
 end;
 
@@ -138,44 +140,50 @@ begin
 
   case Key of
 
-    VK_ESCAPE: ShowMessage('Cancelar Operação');
-
-
+    VK_ESCAPE:
+      ShowMessage('Cancelar Operação');
+    VK_F2:
+      ShowMessage('Abrir Caixa');
+    VK_F4:
+      ShowMessage('Consultar Preço');
+    VK_F5:
+      ShowMessage('Cancelar Item');
+    VK_F6:
+      ShowMessage('Cancelar Venda');
+    VK_F7:
+      ShowMessage('Fechar Venda');
+    VK_F12:
+      btnMaisFuncoesClick(Sender);
   end;
-
-
 
 end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
 
-  FLogin := TfrmLogin.Create(nil);
-  FLogin.Parent := pnlMaster;
-  Flogin.Show;
-
-  FixarForm;
-
+  // FLogin := TfrmLogin.Create(nil);
+  // FLogin.Parent := pnlMaster;
+  // Flogin.Show;
+  //
+  // FixarForm;
 
 end;
 
 procedure TfrmPrincipal.MontarBotoes;
 begin
 
-  btnCancelarOp.Caption     := 'Cancelar Operação' + ''#13'' + '(ESC)';
+  btnCancelarOp.Caption := 'Cancelar Operação' + ''#13'' + '(ESC)';
   btnConsultarPreco.Caption := 'Consultar Preço' + ''#13'' + '(F4)';
-  btnAbrirCaixa.Caption     := 'Abrir Caixa' + ''#13'' + '(F2)';
-  btnCancelarVenda.Caption  := 'Cancelar Venda' + ''#13'' + '(F6)';
-  btnCancelarItem.Caption   := 'Cancelar Item' + ''#13'' + '(F5)';
-  btnMaisFuncoes.Caption    := 'Mais Funções' + ''#13'' + '(F12)';
+  btnAbrirCaixa.Caption := 'Abrir Caixa' + ''#13'' + '(F2)';
+  btnCancelarVenda.Caption := 'Cancelar Venda' + ''#13'' + '(F6)';
+  btnCancelarItem.Caption := 'Cancelar Item' + ''#13'' + '(F5)';
+  btnMaisFuncoes.Caption := 'Mais Funções' + ''#13'' + '(F12)';
 
 end;
 
 procedure TfrmPrincipal.SplitViewAction(Value: TSplitView);
 begin
-
-  Value.Opened := not Value.Opened;
-
+  Value.Opened := (not Value.Opened);
 end;
 
 end.

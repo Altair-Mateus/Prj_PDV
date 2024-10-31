@@ -3,7 +3,7 @@ object frmPrincipal: TfrmPrincipal
   Top = 0
   Caption = 'PDV'
   ClientHeight = 663
-  ClientWidth = 1177
+  ClientWidth = 1183
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object frmPrincipal: TfrmPrincipal
   object pnlMaster: TPanel
     Left = 0
     Top = 0
-    Width = 1177
+    Width = 1183
     Height = 663
     Align = alClient
     BevelOuter = bvNone
@@ -30,7 +30,7 @@ object frmPrincipal: TfrmPrincipal
     object pnlContainer: TPanel
       Left = 0
       Top = 0
-      Width = 1177
+      Width = 1183
       Height = 663
       Align = alClient
       BevelOuter = bvNone
@@ -40,7 +40,7 @@ object frmPrincipal: TfrmPrincipal
       object pnlTitle: TPanel
         Left = 0
         Top = 0
-        Width = 1177
+        Width = 1183
         Height = 60
         Align = alTop
         BevelOuter = bvNone
@@ -59,7 +59,7 @@ object frmPrincipal: TfrmPrincipal
       object pnlMain: TPanel
         Left = 0
         Top = 60
-        Width = 1177
+        Width = 1183
         Height = 503
         Align = alClient
         BevelOuter = bvNone
@@ -67,7 +67,7 @@ object frmPrincipal: TfrmPrincipal
         ExplicitWidth = 1173
         ExplicitHeight = 502
         object pnlOperacoes: TPanel
-          Left = 777
+          Left = 783
           Top = 0
           Width = 400
           Height = 503
@@ -787,7 +787,7 @@ object frmPrincipal: TfrmPrincipal
         object pnlGrid: TPanel
           Left = 0
           Top = 0
-          Width = 777
+          Width = 783
           Height = 503
           Align = alClient
           BevelOuter = bvNone
@@ -801,7 +801,7 @@ object frmPrincipal: TfrmPrincipal
           object gridProdutos: TDBGrid
             Left = 5
             Top = 5
-            Width = 767
+            Width = 773
             Height = 493
             Align = alClient
             BorderStyle = bsNone
@@ -903,7 +903,7 @@ object frmPrincipal: TfrmPrincipal
       object pnlButton: TPanel
         Left = 0
         Top = 563
-        Width = 1177
+        Width = 1183
         Height = 100
         Align = alBottom
         BevelOuter = bvNone
@@ -1150,7 +1150,7 @@ object frmPrincipal: TfrmPrincipal
         end
       end
       object SplitViewFuncoes: TSplitView
-        Left = 1177
+        Left = 1183
         Top = 60
         Width = 0
         Height = 503
@@ -1160,8 +1160,6 @@ object frmPrincipal: TfrmPrincipal
         Placement = svpRight
         TabOrder = 3
         UseAnimation = False
-        ExplicitLeft = 1173
-        ExplicitHeight = 502
         object pnlSplit: TPanel
           Left = 0
           Top = 0
