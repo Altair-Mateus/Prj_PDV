@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.jpeg, pdv.View.Login,
-  Vcl.WinXCtrls;
+  Vcl.WinXCtrls, pdv.View.Page.Pagamento;
 
 type
   TfrmPrincipal = class(TForm)
@@ -79,6 +79,8 @@ type
     Shape6: TShape;
     pnlCPF: TPanel;
     Shape7: TShape;
+    SplitViewPagamentos: TSplitView;
+    pnlPag: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -90,6 +92,8 @@ type
     procedure MontarBotoes;
     procedure FixarForm;
     procedure SplitViewAction(Value: TSplitView);
+
+    procedure ExibirTelaPagamentos;
 
   public
     { Public declarations }
@@ -108,6 +112,20 @@ uses
 procedure TfrmPrincipal.btnMaisFuncoesClick(Sender: TObject);
 begin
   SplitViewAction(SplitViewFuncoes);
+end;
+
+procedure TfrmPrincipal.ExibirTelaPagamentos;
+var
+  lFormulario: TPagePagamentos;
+begin
+
+  lFormulario := TPagePagamentos.Create(nil);
+  try
+    lFormulario.Parent := pnlPag;
+    lFormulario.Show;
+    SplitViewAction(SplitViewPagamentos);
+  finally
+  end;
 end;
 
 procedure TfrmPrincipal.FixarForm;
@@ -151,7 +169,7 @@ begin
     VK_F6:
       ShowMessage('Cancelar Venda');
     VK_F7:
-      ShowMessage('Fechar Venda');
+        ExibirTelaPagamentos;
     VK_F12:
       btnMaisFuncoesClick(Sender);
   end;
