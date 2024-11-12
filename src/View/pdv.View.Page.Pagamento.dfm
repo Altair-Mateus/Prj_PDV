@@ -11,7 +11,8 @@ object PagePagamentos: TPagePagamentos
   Font.Height = -12
   Font.Name = 'Tahoma'
   Font.Style = []
-  OnShow = FormShow
+  OnClose = FormClose
+  OnCreate = FormCreate
   TextHeight = 14
   object pnlContainer: TPanel
     Left = 0
@@ -21,7 +22,6 @@ object PagePagamentos: TPagePagamentos
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitHeight = 617
     object pnlResumoVenda: TPanel
       Left = 0
       Top = 0
@@ -36,7 +36,6 @@ object PagePagamentos: TPagePagamentos
       Padding.Bottom = 50
       ParentBackground = False
       TabOrder = 0
-      ExplicitHeight = 617
       object pnlResumo: TPanel
         Left = 20
         Top = 35
@@ -66,7 +65,6 @@ object PagePagamentos: TPagePagamentos
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitHeight = 400
         object shpSeparador: TShape
           Left = 0
           Top = 170
@@ -558,7 +556,6 @@ object PagePagamentos: TPagePagamentos
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 2
-            ExplicitTop = 40
             object Label1: TLabel
               Left = 0
               Top = 0
@@ -613,7 +610,6 @@ object PagePagamentos: TPagePagamentos
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 3
-            ExplicitTop = 40
             object lblAcrescimo: TLabel
               Left = 0
               Top = 0
@@ -653,8 +649,6 @@ object PagePagamentos: TPagePagamentos
               ParentFont = False
               TabOrder = 0
               Text = '0.00'
-              ExplicitLeft = 71
-              ExplicitWidth = 152
             end
           end
           object pnlTotalReceber: TPanel
@@ -670,7 +664,6 @@ object PagePagamentos: TPagePagamentos
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 4
-            ExplicitTop = 40
             object lblTotalReceber: TLabel
               Left = 0
               Top = 0
@@ -716,10 +709,6 @@ object PagePagamentos: TPagePagamentos
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 16
-          ExplicitTop = 184
-          ExplicitWidth = 185
-          ExplicitHeight = 41
           object pnlTotalRecebido: TPanel
             AlignWithMargins = True
             Left = 0
@@ -733,7 +722,6 @@ object PagePagamentos: TPagePagamentos
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 0
-            ExplicitTop = 8
             object lblTotalRecebido: TLabel
               Left = 0
               Top = 0
@@ -773,8 +761,6 @@ object PagePagamentos: TPagePagamentos
               ParentFont = False
               TabOrder = 0
               Text = '0.00'
-              ExplicitLeft = 71
-              ExplicitWidth = 152
             end
           end
           object pnlSaldoRestante: TPanel
@@ -790,7 +776,6 @@ object PagePagamentos: TPagePagamentos
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 1
-            ExplicitTop = 40
             object lblSaldoRestante: TLabel
               Left = 0
               Top = 0
@@ -840,7 +825,6 @@ object PagePagamentos: TPagePagamentos
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 2
-            ExplicitTop = 40
             object lblTroco: TLabel
               Left = 0
               Top = 0
@@ -894,7 +878,6 @@ object PagePagamentos: TPagePagamentos
         Font.Style = []
         ParentFont = False
         TabOrder = 2
-        ExplicitTop = 526
       end
     end
     object pnlFormasPagamento: TPanel
@@ -907,9 +890,6 @@ object PagePagamentos: TPagePagamentos
       Color = 16315639
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 655
-      ExplicitWidth = 185
-      ExplicitHeight = 617
       object pnlSuperiorFormaPgto: TPanel
         Left = 0
         Top = 0
@@ -931,7 +911,6 @@ object PagePagamentos: TPagePagamentos
           Color = 13223366
           ParentBackground = False
           TabOrder = 0
-          ExplicitTop = 59
           object shpSeparadorSuperior: TShape
             Left = 0
             Top = 0
@@ -962,10 +941,6 @@ object PagePagamentos: TPagePagamentos
           ParentBackground = False
           ParentFont = False
           TabOrder = 1
-          ExplicitLeft = 232
-          ExplicitTop = 48
-          ExplicitWidth = 185
-          ExplicitHeight = 41
         end
       end
       object pnlInfoFormas: TPanel
@@ -979,10 +954,6 @@ object PagePagamentos: TPagePagamentos
         Padding.Top = 5
         Padding.Right = 30
         TabOrder = 1
-        ExplicitLeft = 200
-        ExplicitTop = 288
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object pnlEscolhaFormaPgto: TPanel
           Left = 30
           Top = 5
@@ -999,9 +970,6 @@ object PagePagamentos: TPagePagamentos
           Font.Style = []
           ParentFont = False
           TabOrder = 0
-          ExplicitLeft = 200
-          ExplicitTop = 240
-          ExplicitWidth = 185
         end
         object pnlFormas: TPanel
           Left = 30
@@ -1031,12 +999,10 @@ object PagePagamentos: TPagePagamentos
               Width = 150
               Height = 80
               Align = alClient
+              Pen.Color = 1357025
               Pen.Style = psClear
               Shape = stRoundRect
-              ExplicitLeft = 40
-              ExplicitTop = 8
-              ExplicitWidth = 65
-              ExplicitHeight = 65
+              ExplicitTop = -4
             end
             object pnlSuperiorCartao: TPanel
               Left = 0
@@ -1046,10 +1012,22 @@ object PagePagamentos: TPagePagamentos
               Align = alClient
               BevelOuter = bvNone
               TabOrder = 0
-              ExplicitLeft = -16
-              ExplicitTop = 24
-              ExplicitWidth = 185
-              ExplicitHeight = 41
+              object lblCartao: TLabel
+                Left = 0
+                Top = 51
+                Width = 150
+                Height = 29
+                Align = alClient
+                Alignment = taCenter
+                AutoSize = False
+                BiDiMode = bdLeftToRight
+                Caption = 'Cart'#227'o'
+                ParentBiDiMode = False
+                Layout = tlCenter
+                OnClick = ClickCartao
+                ExplicitTop = 54
+                ExplicitHeight = 26
+              end
               object pnlImgCartao: TPanel
                 Left = 0
                 Top = 0
@@ -1058,6 +1036,7 @@ object PagePagamentos: TPagePagamentos
                 Align = alTop
                 BevelOuter = bvNone
                 TabOrder = 0
+                OnClick = ClickCartao
                 object imgCartao: TImage
                   AlignWithMargins = True
                   Left = 50
@@ -1344,33 +1323,12 @@ object PagePagamentos: TPagePagamentos
                     31365432323A32313A34322B30303A3030477F93620000000049454E44AE4260
                     82}
                   Stretch = True
+                  OnClick = ClickCartao
                   ExplicitLeft = 24
                   ExplicitTop = -24
                   ExplicitWidth = 105
                   ExplicitHeight = 105
                 end
-              end
-              object pnlTituloCartao: TPanel
-                Left = 0
-                Top = 51
-                Width = 150
-                Height = 29
-                Align = alClient
-                BevelOuter = bvNone
-                Caption = 'Cart'#227'o'
-                Color = clWhite
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = 6707288
-                Font.Height = -12
-                Font.Name = 'Tahoma'
-                Font.Style = []
-                ParentBackground = False
-                ParentFont = False
-                TabOrder = 1
-                ExplicitLeft = -16
-                ExplicitTop = 24
-                ExplicitWidth = 185
-                ExplicitHeight = 41
               end
             end
           end
@@ -1387,13 +1345,13 @@ object PagePagamentos: TPagePagamentos
             Align = alLeft
             BevelOuter = bvNone
             TabOrder = 1
-            ExplicitLeft = 0
             object shpPix: TShape
               Left = 0
               Top = 0
               Width = 150
               Height = 80
               Align = alClient
+              Pen.Color = 1357025
               Pen.Style = psClear
               Shape = stRoundRect
               ExplicitLeft = 40
@@ -1409,6 +1367,22 @@ object PagePagamentos: TPagePagamentos
               Align = alClient
               BevelOuter = bvNone
               TabOrder = 0
+              object lblPix: TLabel
+                Left = 0
+                Top = 51
+                Width = 150
+                Height = 29
+                Align = alClient
+                Alignment = taCenter
+                AutoSize = False
+                BiDiMode = bdLeftToRight
+                Caption = 'Pix'
+                ParentBiDiMode = False
+                Layout = tlCenter
+                OnClick = ClickPix
+                ExplicitTop = 54
+                ExplicitHeight = 26
+              end
               object pnlImgPix: TPanel
                 Left = 0
                 Top = 0
@@ -1417,6 +1391,7 @@ object PagePagamentos: TPagePagamentos
                 Align = alTop
                 BevelOuter = bvNone
                 TabOrder = 0
+                OnClick = ClickPix
                 object imgPix: TImage
                   AlignWithMargins = True
                   Left = 50
@@ -1602,29 +1577,12 @@ object PagePagamentos: TPagePagamentos
                     1401324F1120F31401324F1120F31401324F1120F3140132CFFF036FF4FE793B
                     81F7CE0000000049454E44AE426082}
                   Stretch = True
+                  OnClick = ClickPix
                   ExplicitLeft = 24
                   ExplicitTop = -24
                   ExplicitWidth = 105
                   ExplicitHeight = 105
                 end
-              end
-              object pnlTituloPix: TPanel
-                Left = 0
-                Top = 51
-                Width = 150
-                Height = 29
-                Align = alClient
-                BevelOuter = bvNone
-                Caption = 'Pix'
-                Color = clWhite
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = 6707288
-                Font.Height = -12
-                Font.Name = 'Tahoma'
-                Font.Style = []
-                ParentBackground = False
-                ParentFont = False
-                TabOrder = 1
               end
             end
           end
@@ -1641,19 +1599,17 @@ object PagePagamentos: TPagePagamentos
             Align = alLeft
             BevelOuter = bvNone
             TabOrder = 2
-            ExplicitLeft = 0
             object shpDinheiro: TShape
               Left = 0
               Top = 0
               Width = 150
               Height = 80
               Align = alClient
+              Pen.Color = 1357025
               Pen.Style = psClear
               Shape = stRoundRect
-              ExplicitLeft = 40
-              ExplicitTop = 8
-              ExplicitWidth = 65
-              ExplicitHeight = 65
+              ExplicitWidth = 153
+              ExplicitHeight = 74
             end
             object pnlSuperiorDinheiro: TPanel
               Left = 0
@@ -1663,6 +1619,22 @@ object PagePagamentos: TPagePagamentos
               Align = alClient
               BevelOuter = bvNone
               TabOrder = 0
+              object lblDinheiro: TLabel
+                Left = 0
+                Top = 51
+                Width = 150
+                Height = 29
+                Align = alClient
+                Alignment = taCenter
+                AutoSize = False
+                BiDiMode = bdLeftToRight
+                Caption = 'Dinheiro'
+                ParentBiDiMode = False
+                Layout = tlCenter
+                OnClick = ClickDinheiro
+                ExplicitTop = 54
+                ExplicitHeight = 26
+              end
               object pnlImgDinheiro: TPanel
                 Left = 0
                 Top = 0
@@ -1671,6 +1643,7 @@ object PagePagamentos: TPagePagamentos
                 Align = alTop
                 BevelOuter = bvNone
                 TabOrder = 0
+                OnClick = ClickDinheiro
                 object imgDinheiro: TImage
                   AlignWithMargins = True
                   Left = 50
@@ -2348,51 +2321,31 @@ object PagePagamentos: TPagePagamentos
                     6D657374616D7000323032322D31312D31365432323A33313A33372B30303A30
                     30DE0C6A1C0000000049454E44AE426082}
                   Stretch = True
+                  OnClick = ClickDinheiro
                   ExplicitLeft = 24
                   ExplicitTop = -24
                   ExplicitWidth = 105
                   ExplicitHeight = 105
                 end
               end
-              object pnlTituloDinheiro: TPanel
-                Left = 0
-                Top = 51
-                Width = 150
-                Height = 29
-                Align = alClient
-                BevelOuter = bvNone
-                Caption = 'Dinheiro'
-                Color = clWhite
-                Font.Charset = DEFAULT_CHARSET
-                Font.Color = 6707288
-                Font.Height = -12
-                Font.Name = 'Tahoma'
-                Font.Style = []
-                ParentBackground = False
-                ParentFont = False
-                TabOrder = 1
-              end
             end
           end
         end
-        object pnlFramePix: TPanel
+        object pnlFrame: TPanel
           Left = 30
           Top = 136
           Width = 517
           Height = 314
           Align = alClient
           BevelOuter = bvNone
-          Padding.Top = 10
-          Padding.Bottom = 30
+          Padding.Top = 20
+          Padding.Bottom = 10
           TabOrder = 2
-          ExplicitLeft = 200
-          ExplicitTop = 240
-          ExplicitWidth = 185
-          ExplicitHeight = 41
+          ExplicitTop = 134
           object pnlSeparadorFramePix: TPanel
             AlignWithMargins = True
             Left = 0
-            Top = 10
+            Top = 20
             Width = 517
             Height = 5
             Margins.Left = 0
@@ -2404,8 +2357,7 @@ object PagePagamentos: TPagePagamentos
             Color = 13223366
             ParentBackground = False
             TabOrder = 0
-            ExplicitLeft = 30
-            ExplicitTop = 59
+            ExplicitTop = 10
             object shpSeparadorPix: TShape
               Left = 0
               Top = 0

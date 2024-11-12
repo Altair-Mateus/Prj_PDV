@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage, pdv.View.Page.Pix;
+  Vcl.Imaging.pngimage, pdv.View.Page.Pix, pdv.View.Page.Dinheiro,
+  pdv.View.Page.Cartao;
 
 type
   TPagePagamentos = class(TForm)
@@ -53,27 +54,43 @@ type
     pnlCartao: TPanel;
     pnlSuperiorCartao: TPanel;
     pnlImgCartao: TPanel;
-    pnlTituloCartao: TPanel;
     imgCartao: TImage;
     pnlPix: TPanel;
     shpPix: TShape;
     pnlSuperiorPix: TPanel;
     pnlImgPix: TPanel;
     imgPix: TImage;
-    pnlTituloPix: TPanel;
     pnlDinheiro: TPanel;
     shpDinheiro: TShape;
     pnlSuperiorDinheiro: TPanel;
     pnlImgDinheiro: TPanel;
     imgDinheiro: TImage;
-    pnlTituloDinheiro: TPanel;
-    pnlFramePix: TPanel;
+    pnlFrame: TPanel;
     pnlSeparadorFramePix: TPanel;
     shpSeparadorPix: TShape;
     shpCartao: TShape;
-    procedure FormShow(Sender: TObject);
+    lblCartao: TLabel;
+    lblPix: TLabel;
+    lblDinheiro: TLabel;
+    procedure ClickPix(Sender: TObject);
+    procedure ClickCartao(Sender: TObject);
+    procedure ClickDinheiro(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
-    procedure ExibeFramePix;
+    FFramePix: TFramePix;
+    FFrameDinheiro: TFrameDinheiro;
+    FFrameCartao: TFrameCartao;
+
+    procedure InicializaFrames;
+    procedure DestroyFrames;
+    procedure CriaFramePix;
+    procedure CriaFrameDinheiro;
+    procedure CriaFrameCartao;
+    procedure SetClick(pShape: TShape);
+
+    procedure ExibirFrame(const pFrame: TFrame);
+
   public
     { Public declarations }
   end;
@@ -85,19 +102,93 @@ implementation
 
 {$R *.dfm}
 
-procedure TPagePagamentos.ExibeFramePix;
-var
-  lFrame: TFramePix;
+procedure TPagePagamentos.ClickCartao(Sender: TObject);
 begin
-  lFrame := TFramePix.Create(nil);
-  lFrame.Align := alClient;
-  lFrame.Parent := pnlFramePix;
-  lFrame.Show;
+  SetClick(shpCartao);
+  ExibirFrame(FFrameCartao);
 end;
 
-procedure TPagePagamentos.FormShow(Sender: TObject);
+procedure TPagePagamentos.ClickDinheiro(Sender: TObject);
 begin
-  ExibeFramePix;
+  SetClick(shpDinheiro);
+  ExibirFrame(FFrameDinheiro);
+end;
+
+procedure TPagePagamentos.ClickPix(Sender: TObject);
+begin
+  SetClick(shpPix);
+  ExibirFrame(FFramePix);
+end;
+
+procedure TPagePagamentos.CriaFrameCartao;
+begin
+  FFrameCartao := TFrameCartao.Create(nil);
+  FFrameCartao.Align := alClient;
+  FFrameCartao.Parent := pnlFrame;
+  FFrameCartao.Visible := False;
+end;
+
+procedure TPagePagamentos.CriaFrameDinheiro;
+begin
+  FFrameDinheiro := TFrameDinheiro.Create(nil);
+  FFrameDinheiro.Align := alClient;
+  FFrameDinheiro.Parent := pnlFrame;
+  FFrameDinheiro.Visible := False;
+end;
+
+procedure TPagePagamentos.CriaFramePix;
+begin
+  FFramePix := TFramePix.Create(nil);
+  FFramePix.Align := alClient;
+  FFramePix.Parent := pnlFrame;
+  FFramePix.Visible := False;
+end;
+
+procedure TPagePagamentos.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  DestroyFrames;
+end;
+
+procedure TPagePagamentos.FormCreate(Sender: TObject);
+begin
+  InicializaFrames;
+end;
+
+procedure TPagePagamentos.InicializaFrames;
+begin
+  CriaFramePix;
+  CriaFrameDinheiro;
+  CriaFrameCartao;
+end;
+
+procedure TPagePagamentos.SetClick(pShape: TShape);
+begin
+  shpPix.Pen.Style := psClear;
+  shpDinheiro.Pen.Style := psClear;
+  shpCartao.Pen.Style := psClear;
+
+  pShape.Pen.Style := psSolid;
+  pnlFormas.Visible := False;
+  pnlFormas.Visible := True;
+end;
+
+procedure TPagePagamentos.DestroyFrames;
+begin
+  FFramePix.Free;
+  FFrameDinheiro.Free;
+  FFrameCartao.Free;
+end;
+
+procedure TPagePagamentos.ExibirFrame(const pFrame: TFrame);
+begin
+  FFramePix.Visible := False;
+  FFrameDinheiro.Visible := False;
+  FFrameCartao.Visible := False;
+
+  pFrame.Visible := True;
+
+  if (pFrame = FFrameDinheiro) then
+    FFrameDinheiro.edtRecebido.SetFocus;
 end;
 
 end.
