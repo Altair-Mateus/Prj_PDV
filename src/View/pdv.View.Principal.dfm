@@ -12,8 +12,8 @@ object frmPrincipal: TfrmPrincipal
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
-  OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   TextHeight = 19
@@ -805,7 +805,7 @@ object frmPrincipal: TfrmPrincipal
             Left = 5
             Top = 5
             Width = 773
-            Height = 493
+            Height = 452
             Align = alClient
             BorderStyle = bsNone
             DataSource = dsItens
@@ -900,6 +900,27 @@ object frmPrincipal: TfrmPrincipal
                 Width = 78
                 Visible = True
               end>
+          end
+          object pnlIdCliente: TPanel
+            Left = 5
+            Top = 457
+            Width = 773
+            Height = 41
+            Align = alBottom
+            BevelOuter = bvNone
+            Color = clPurple
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 1
+            Visible = False
+            ExplicitLeft = 168
+            ExplicitTop = 256
+            ExplicitWidth = 185
           end
         end
       end
@@ -1163,8 +1184,6 @@ object frmPrincipal: TfrmPrincipal
         Placement = svpRight
         TabOrder = 3
         UseAnimation = False
-        ExplicitLeft = 1179
-        ExplicitHeight = 502
         object pnlSplit: TPanel
           Left = 0
           Top = 0
@@ -1190,7 +1209,7 @@ object frmPrincipal: TfrmPrincipal
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            object Shape2: TShape
+            object shpSupSan: TShape
               Left = 0
               Top = 40
               Width = 0
@@ -1209,7 +1228,7 @@ object frmPrincipal: TfrmPrincipal
             BevelOuter = bvNone
             Caption = 'Desconto Item (F11)'
             TabOrder = 1
-            object Shape3: TShape
+            object shpDescItem: TShape
               Left = 0
               Top = 40
               Width = 0
@@ -1228,7 +1247,7 @@ object frmPrincipal: TfrmPrincipal
             BevelOuter = bvNone
             Caption = 'Multiplicar(*)'
             TabOrder = 2
-            object Shape4: TShape
+            object shpMultiplicar: TShape
               Left = 0
               Top = 40
               Width = 0
@@ -1247,7 +1266,7 @@ object frmPrincipal: TfrmPrincipal
             BevelOuter = bvNone
             Caption = 'Fechar Venda (F7)'
             TabOrder = 3
-            object Shape5: TShape
+            object shpFechaVenda: TShape
               Left = 0
               Top = 40
               Width = 0
@@ -1266,7 +1285,7 @@ object frmPrincipal: TfrmPrincipal
             BevelOuter = bvNone
             Caption = 'Nova Venda (F3)'
             TabOrder = 4
-            object Shape6: TShape
+            object shpNovaVenda: TShape
               Left = 0
               Top = 40
               Width = 0
@@ -1285,7 +1304,26 @@ object frmPrincipal: TfrmPrincipal
             BevelOuter = bvNone
             Caption = 'Informar CPF (F9)'
             TabOrder = 5
-            object Shape7: TShape
+            object shpCpf: TShape
+              Left = 0
+              Top = 40
+              Width = 0
+              Height = 1
+              Align = alBottom
+              ExplicitTop = -24
+              ExplicitWidth = 200
+            end
+          end
+          object pnlImportarCliente: TPanel
+            Left = 0
+            Top = 246
+            Width = 0
+            Height = 41
+            Align = alTop
+            BevelOuter = bvNone
+            Caption = 'Importar Cliente (CTRL)'
+            TabOrder = 6
+            object shpInformarCliente: TShape
               Left = 0
               Top = 40
               Width = 0
@@ -1309,6 +1347,8 @@ object frmPrincipal: TfrmPrincipal
         Placement = svpRight
         TabOrder = 4
         UseAnimation = False
+        ExplicitLeft = 1179
+        ExplicitHeight = 502
         object pnlPag: TPanel
           Left = 0
           Top = 0
@@ -1317,10 +1357,7 @@ object frmPrincipal: TfrmPrincipal
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitLeft = 328
-          ExplicitTop = 232
-          ExplicitWidth = 185
-          ExplicitHeight = 41
+          ExplicitHeight = 502
         end
       end
     end

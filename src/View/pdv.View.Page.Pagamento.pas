@@ -122,25 +122,20 @@ end;
 
 procedure TPagePagamentos.CriaFrameCartao;
 begin
-  FFrameCartao := TFrameCartao.Create(nil);
-  FFrameCartao.Align := alClient;
-  FFrameCartao.Parent := pnlFrame;
+  FFrameCartao := TFrameCartao.New(Self).Alignment(alClient).Embed(pnlFrame);
   FFrameCartao.Visible := False;
 end;
 
 procedure TPagePagamentos.CriaFrameDinheiro;
 begin
-  FFrameDinheiro := TFrameDinheiro.Create(nil);
-  FFrameDinheiro.Align := alClient;
-  FFrameDinheiro.Parent := pnlFrame;
+  FFrameDinheiro := TFrameDinheiro.New(Self).Alignment(alClient)
+    .Embed(pnlFrame);
   FFrameDinheiro.Visible := False;
 end;
 
 procedure TPagePagamentos.CriaFramePix;
 begin
-  FFramePix := TFramePix.Create(nil);
-  FFramePix.Align := alClient;
-  FFramePix.Parent := pnlFrame;
+  FFramePix := TFramePix.New(Self).Alignment(alClient).Embed(pnlFrame);
   FFramePix.Visible := False;
 end;
 

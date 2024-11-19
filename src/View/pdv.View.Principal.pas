@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.jpeg, pdv.View.Login,
-  Vcl.WinXCtrls, pdv.View.Page.Pagamento;
+  Vcl.WinXCtrls, pdv.View.Page.Pagamento, pdv.View.Page.identificarCliente,
+  pdv.View.Page.ImportarCliente;
 
 type
   TfrmPrincipal = class(TForm)
@@ -68,32 +69,41 @@ type
     SplitViewFuncoes: TSplitView;
     pnlSplit: TPanel;
     pnlSupSan: TPanel;
-    Shape2: TShape;
+    shpSupSan: TShape;
     pnlDescItem: TPanel;
-    Shape3: TShape;
+    shpDescItem: TShape;
     pnlMultiplicar: TPanel;
-    Shape4: TShape;
+    shpMultiplicar: TShape;
     pnlFechaVenda: TPanel;
-    Shape5: TShape;
+    shpFechaVenda: TShape;
     pnlNovaVenda: TPanel;
-    Shape6: TShape;
+    shpNovaVenda: TShape;
     pnlCPF: TPanel;
-    Shape7: TShape;
+    shpCpf: TShape;
     SplitViewPagamentos: TSplitView;
     pnlPag: TPanel;
+    pnlImportarCliente: TPanel;
+    shpInformarCliente: TShape;
+    pnlIdCliente: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnMaisFuncoesClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
 
   private
     FLogin: TfrmLogin;
+    FIdentCliente, FIdentCpf: TPageIdentificarCliente;
+    FImportarCliente: TPageImportarCliente;
     procedure MontarBotoes;
     procedure FixarForm;
     procedure SplitViewAction(Value: TSplitView);
 
     procedure ExibirTelaPagamentos;
+    procedure ExibeTelaidCliente;
+    procedure ExibeTelaIdCpf;
+    procedure ExibeTelaImpCliente;
+    procedure DestroyTelas;
 
   public
     { Public declarations }
@@ -112,6 +122,63 @@ uses
 procedure TfrmPrincipal.btnMaisFuncoesClick(Sender: TObject);
 begin
   SplitViewAction(SplitViewFuncoes);
+end;
+
+procedure TfrmPrincipal.ExibeTelaidCliente;
+begin
+  if not(Assigned(FIdentCliente)) then
+    FIdentCliente := TPageIdentificarCliente.New(Self).Embed(pnlMaster);
+
+  FIdentCliente.Show;
+end;
+
+procedure TfrmPrincipal.ExibeTelaIdCpf;
+begin
+  if not(Assigned(FIdentCpf)) then
+    FIdentCpf := TPageIdentificarCliente.New(Self).Embed(pnlMaster)
+      .IdentificaCpf.identificarCliente(
+      procedure(aCpf, aCLiente: String)
+      begin
+
+        if (not aCLiente.IsEmpty) then
+          aCLiente := 'Cliente: ' + aCLiente;
+        if (not aCpf.IsEmpty) then
+          aCpf := 'CPF: ' + aCpf;
+
+        if ((not aCLiente.IsEmpty) or (not aCpf.IsEmpty)) then
+        begin
+          pnlIdCliente.Caption := aCLiente + ' ' + aCpf;
+          pnlIdCliente.Visible := True;
+        end;
+      end);
+
+  FIdentCpf.Show;
+end;
+
+procedure TfrmPrincipal.ExibeTelaImpCliente;
+begin
+  if not(Assigned(FImportarCliente)) then
+  begin
+    FImportarCliente := TPageImportarCliente.New(Self).Embed(pnlMaster)
+      .Titulo('Lista de Clientes');
+  end;
+
+  FImportarCliente.Show;
+end;
+
+procedure TfrmPrincipal.DestroyTelas;
+begin
+  if (Assigned(FIdentCliente)) then
+    FIdentCliente.Release;
+
+  if (Assigned(FIdentCpf)) then
+    FIdentCpf.Release;
+
+  if Assigned(FLogin) then
+    FLogin.Release;
+
+  if Assigned(FImportarCliente) then
+    FImportarCliente.Release;
 end;
 
 procedure TfrmPrincipal.ExibirTelaPagamentos;
@@ -140,11 +207,6 @@ begin
 
 end;
 
-procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  FLogin.Free;
-end;
-
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
 
@@ -152,8 +214,13 @@ begin
 
 end;
 
+procedure TfrmPrincipal.FormDestroy(Sender: TObject);
+begin
+  DestroyTelas;
+end;
+
 procedure TfrmPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+Shift: TShiftState);
 begin
 
   case Key of
@@ -169,9 +236,13 @@ begin
     VK_F6:
       ShowMessage('Cancelar Venda');
     VK_F7:
-        ExibirTelaPagamentos;
+      ExibirTelaPagamentos;
+    VK_F9:
+      ExibeTelaIdCpf;
     VK_F12:
       btnMaisFuncoesClick(Sender);
+    VK_CONTROL:
+      ExibeTelaImpCliente;
   end;
 
 end;

@@ -9,7 +9,9 @@ uses
   pdv.View.Page.Pagamento in 'src\View\pdv.View.Page.Pagamento.pas' {PagePagamentos},
   pdv.View.Page.Pix in 'src\View\pdv.View.Page.Pix.pas' {FramePix: TFrame},
   pdv.View.Page.Dinheiro in 'src\View\pdv.View.Page.Dinheiro.pas' {FrameDinheiro: TFrame},
-  pdv.View.Page.Cartao in 'src\View\pdv.View.Page.Cartao.pas' {FrameCartao: TFrame};
+  pdv.View.Page.Cartao in 'src\View\pdv.View.Page.Cartao.pas' {FrameCartao: TFrame},
+  pdv.View.Page.identificarCliente in 'src\View\pdv.View.Page.identificarCliente.pas' {PageIdentificarCliente},
+  pdv.View.Page.ImportarCliente in 'src\View\pdv.View.Page.ImportarCliente.pas' {PageImportarCliente};
 
 {$R *.res}
 

@@ -50,7 +50,7 @@ type
   public
     class function New(AOwner: TComponent): TFrameCartao;
     function Embed(Value: TWinControl): TFrameCartao;
-    function Align(Value: TAlign): TFrameCartao;
+    function Alignment(Value: TAlign): TFrameCartao;
   end;
 
 implementation
@@ -58,16 +58,16 @@ implementation
 {$R *.dfm}
 { TFrameCartao }
 
-function TFrameCartao.Align(Value: TAlign): TFrameCartao;
+function TFrameCartao.Alignment(Value: TAlign): TFrameCartao;
 begin
+  Self.Align := Value;
   Result := Self;
-  Self.Align(Value);
 end;
 
 function TFrameCartao.Embed(Value: TWinControl): TFrameCartao;
 begin
-  Result := Self;
   Self.Parent := Value;
+  Result := Self;
 end;
 
 class function TFrameCartao.New(AOwner: TComponent): TFrameCartao;

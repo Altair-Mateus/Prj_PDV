@@ -2341,7 +2341,6 @@ object PagePagamentos: TPagePagamentos
           Padding.Top = 20
           Padding.Bottom = 10
           TabOrder = 2
-          ExplicitTop = 134
           object pnlSeparadorFramePix: TPanel
             AlignWithMargins = True
             Left = 0
@@ -2357,7 +2356,6 @@ object PagePagamentos: TPagePagamentos
             Color = 13223366
             ParentBackground = False
             TabOrder = 0
-            ExplicitTop = 10
             object shpSeparadorPix: TShape
               Left = 0
               Top = 0
