@@ -146,6 +146,11 @@
             <Form>PageImportarCliente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\View\pdv.View.Page.AbrirCaixa.pas">
+            <Form>PageAberturaCaixa</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\model\pdv.Model.cAIXA.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

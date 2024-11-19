@@ -11,6 +11,8 @@ object PageImportarCliente: TPageImportarCliente
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
   TextHeight = 15
   object pnlContainer: TPanel
     Left = 0
@@ -26,10 +28,6 @@ object PageImportarCliente: TPageImportarCliente
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitLeft = 408
-    ExplicitTop = 304
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object pnlTitulo: TPanel
       Left = 0
       Top = 0
@@ -517,7 +515,6 @@ object PageImportarCliente: TPageImportarCliente
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        ExplicitHeight = 50
         object imgLista: TImage
           AlignWithMargins = True
           Left = 5
@@ -964,10 +961,6 @@ object PageImportarCliente: TPageImportarCliente
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 408
-      ExplicitTop = 304
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object pnlPesquisa: TPanel
         Left = 0
         Top = 0
@@ -1010,7 +1003,6 @@ object PageImportarCliente: TPageImportarCliente
           Font.Style = []
           ParentFont = False
           TabOrder = 0
-          ExplicitHeight = 40
         end
         object edtPesquisar: TSearchBox
           AlignWithMargins = True
@@ -1032,10 +1024,6 @@ object PageImportarCliente: TPageImportarCliente
           ParentFont = False
           TabOrder = 1
           TextHint = 'Pesquisar Cliente'
-          ExplicitLeft = 5
-          ExplicitTop = 5
-          ExplicitWidth = 875
-          ExplicitHeight = 45
         end
       end
       object pnlGrdConsulta: TPanel
@@ -1050,10 +1038,6 @@ object PageImportarCliente: TPageImportarCliente
         Padding.Right = 5
         Padding.Bottom = 5
         TabOrder = 1
-        ExplicitLeft = 408
-        ExplicitTop = 280
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object grdConsulta: TDBGrid
           Left = 5
           Top = 5

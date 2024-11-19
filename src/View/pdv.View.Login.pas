@@ -33,7 +33,12 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FFundo: TfrmComponenteTransparencia;
+    FProc: TProc<String>;
   public
+    function Embed(Value: TWinControl): TfrmLogin;
+    function Informacao(Value: TProc<String>): TfrmLogin;
+    class function New(AOwner: TComponent): TfrmLogin;
+
   end;
 
 var
@@ -55,6 +60,12 @@ begin
 
 end;
 
+function TfrmLogin.Embed(Value: TWinControl): TfrmLogin;
+begin
+  Self.Parent := Value;
+  Result := Self;
+end;
+
 procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FFundo.Free;
@@ -65,6 +76,17 @@ begin
   FFundo := TfrmComponenteTransparencia.Create(nil);
   FFundo.Parent := pnlImage;
   FFundo.Show;
+end;
+
+function TfrmLogin.Informacao(Value: TProc<String>): TfrmLogin;
+begin
+  FProc := Value;
+  Result := Self;
+end;
+
+class function TfrmLogin.New(AOwner: TComponent): TfrmLogin;
+begin
+  Result := Self.Create(AOwner);
 end;
 
 end.

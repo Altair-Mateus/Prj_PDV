@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.jpeg, pdv.View.Login,
   Vcl.WinXCtrls, pdv.View.Page.Pagamento, pdv.View.Page.identificarCliente,
-  pdv.View.Page.ImportarCliente;
+  pdv.View.Page.ImportarCliente, pdv.View.Page.AbrirCaixa, pdv.Model.cAIXA;
 
 type
   TfrmPrincipal = class(TForm)
@@ -85,7 +85,6 @@ type
     pnlImportarCliente: TPanel;
     shpInformarCliente: TShape;
     pnlIdCliente: TPanel;
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnMaisFuncoesClick(Sender: TObject);
@@ -95,15 +94,25 @@ type
     FLogin: TfrmLogin;
     FIdentCliente, FIdentCpf: TPageIdentificarCliente;
     FImportarCliente: TPageImportarCliente;
+    FAbrirCaixa: TPageAberturaCaixa;
+    FCaixa: TCaixa;
+
     procedure MontarBotoes;
     procedure FixarForm;
     procedure SplitViewAction(Value: TSplitView);
 
-    procedure ExibirTelaPagamentos;
+    procedure ExibeTelaPagamentos;
     procedure ExibeTelaidCliente;
     procedure ExibeTelaIdCpf;
     procedure ExibeTelaImpCliente;
+    procedure ExibeTelaAbrirCaixa;
+    procedure ExibeTelaLogin;
     procedure DestroyTelas;
+    procedure DestroyObjetos;
+
+    procedure LimparCampos;
+    procedure VerificaStatusCaixa;
+    procedure InfoOperador;
 
   public
     { Public declarations }
@@ -166,6 +175,27 @@ begin
   FImportarCliente.Show;
 end;
 
+procedure TfrmPrincipal.ExibeTelaLogin;
+begin
+  FLogin := TfrmLogin.New(Self).Embed(pnlMaster).Informacao(
+    procedure(Value: String)
+    begin
+      if not(Assigned(FCaixa)) then
+        FCaixa := TCaixa.New;
+
+      FCaixa.Operador := Value;
+    end);
+
+  FLogin.Show;
+  VerificaStatusCaixa;
+
+end;
+
+procedure TfrmPrincipal.DestroyObjetos;
+begin
+  FCaixa.Free;
+end;
+
 procedure TfrmPrincipal.DestroyTelas;
 begin
   if (Assigned(FIdentCliente)) then
@@ -179,9 +209,12 @@ begin
 
   if Assigned(FImportarCliente) then
     FImportarCliente.Release;
+
+  if Assigned(FAbrirCaixa) then
+    FAbrirCaixa.Release;
 end;
 
-procedure TfrmPrincipal.ExibirTelaPagamentos;
+procedure TfrmPrincipal.ExibeTelaPagamentos;
 var
   lFormulario: TPagePagamentos;
 begin
@@ -193,6 +226,14 @@ begin
     SplitViewAction(SplitViewPagamentos);
   finally
   end;
+end;
+
+procedure TfrmPrincipal.ExibeTelaAbrirCaixa;
+begin
+  if not Assigned(FAbrirCaixa) then
+    FAbrirCaixa := TPageAberturaCaixa.New(Self).Embed(pnlMaster);
+
+  FAbrirCaixa.Show;
 end;
 
 procedure TfrmPrincipal.FixarForm;
@@ -207,28 +248,50 @@ begin
 
 end;
 
-procedure TfrmPrincipal.FormCreate(Sender: TObject);
-begin
-
-  MontarBotoes;
-
-end;
-
 procedure TfrmPrincipal.FormDestroy(Sender: TObject);
 begin
   DestroyTelas;
+  DestroyObjetos;
 end;
 
 procedure TfrmPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
 Shift: TShiftState);
+var
+  lKeyEvent: TKeyEvent;
+  I: Integer;
+  lForm: TForm;
 begin
+
+  for I := Pred(pnlMaster.ControlCount) downto 0 do
+  begin
+
+    if (pnlMaster.Controls[I] is TForm) then
+    begin
+      if not(Shift = [ssCtrl]) then
+      begin
+        lForm := TForm(pnlMaster.Controls[I]);
+
+        if (lForm.KeyPreview) then
+          lKeyEvent := lForm.OnKeyDown;
+
+        // Se estiver assinado passa os comandos de atalho a tela embedada no painel
+        if (Assigned(lKeyEvent)) then
+        begin
+          lKeyEvent(Sender, Key, Shift);
+          exit;
+        end;
+      end;
+    end;
+  end;
 
   case Key of
 
     VK_ESCAPE:
-      ShowMessage('Cancelar Operação');
+      Close;
+    VK_F1:
+      ExibeTelaImpCliente;
     VK_F2:
-      ShowMessage('Abrir Caixa');
+      ExibeTelaAbrirCaixa;
     VK_F4:
       ShowMessage('Consultar Preço');
     VK_F5:
@@ -236,32 +299,51 @@ begin
     VK_F6:
       ShowMessage('Cancelar Venda');
     VK_F7:
-      ExibirTelaPagamentos;
+      ExibeTelaPagamentos;
     VK_F9:
       ExibeTelaIdCpf;
     VK_F12:
       btnMaisFuncoesClick(Sender);
-    VK_CONTROL:
-      ExibeTelaImpCliente;
+
   end;
 
 end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
+  ExibeTelaLogin;
+  MontarBotoes;
+end;
 
-  // FLogin := TfrmLogin.Create(nil);
-  // FLogin.Parent := pnlMaster;
-  // Flogin.Show;
-  //
-  // FixarForm;
+procedure TfrmPrincipal.InfoOperador;
+var
+  lCaption, lOperador: String;
+begin
+  lOperador := Format('Caixa %d | Operador: %s | Turno: %s',
+    [FCaixa.cAIXA, FCaixa.Operador, FCaixa.Turno.ToString]);
 
+  lCaption := StringOfChar(' ',
+    (255 - (Length(Self.Caption) + Length(lOperador))));
+
+  Self.Caption := Self.Caption + lCaption + lOperador;
+end;
+
+procedure TfrmPrincipal.LimparCampos;
+begin
+  edtProduto.Clear;
+  lblPreco.Caption := FormatFloat('"R$ ", 0.00', 0);
+  edtQuantidade.Text := FormatFloat(',0.000', 0);
+  lblSubTotal.Caption := FormatFloat('"R$ ", 0.00', 0);
+  lblTotalCompra.Caption := FormatFloat('"R$ ", 0.00', 0);
+  dsItens.DataSet.Active := False;
+  pnlTitle.Caption := 'Caixa Fechado';
+  pnlTitle.SetFocus;
 end;
 
 procedure TfrmPrincipal.MontarBotoes;
 begin
 
-  btnCancelarOp.Caption := 'Cancelar Operação' + ''#13'' + '(ESC)';
+  btnCancelarOp.Caption := 'Cancelar Operação' + ''#13'' + '(F10)';
   btnConsultarPreco.Caption := 'Consultar Preço' + ''#13'' + '(F4)';
   btnAbrirCaixa.Caption := 'Abrir Caixa' + ''#13'' + '(F2)';
   btnCancelarVenda.Caption := 'Cancelar Venda' + ''#13'' + '(F6)';
@@ -273,6 +355,17 @@ end;
 procedure TfrmPrincipal.SplitViewAction(Value: TSplitView);
 begin
   Value.Opened := (not Value.Opened);
+end;
+
+procedure TfrmPrincipal.VerificaStatusCaixa;
+begin
+  if (FCaixa.Aberto) then
+    pnlTitle.Caption := 'Caixa Aberto'
+  else
+    pnlTitle.Caption := 'Caixa Fechado';
+
+  InfoOperador;
+  LimparCampos;
 end;
 
 end.

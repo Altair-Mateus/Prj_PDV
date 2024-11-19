@@ -37,6 +37,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure ClickBtnConfirmar(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     FProc: TProc<String, String>;
   public
@@ -68,6 +69,23 @@ function TPageIdentificarCliente.Embed(Value: TWinControl)
 begin
   Self.Parent := Value;
   Result := Self;
+end;
+
+procedure TPageIdentificarCliente.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    VK_F2:
+      ShowMessage('Pesquisaa');
+    VK_F5:
+      ClickBtnConfirmar(Sender);
+    VK_ESCAPE:
+      begin
+//        DisposeOf;
+        Close;
+      end;
+
+  end;
 end;
 
 procedure TPageIdentificarCliente.FormResize(Sender: TObject);

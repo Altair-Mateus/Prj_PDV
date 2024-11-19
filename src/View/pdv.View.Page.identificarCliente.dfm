@@ -12,6 +12,8 @@ object PageIdentificarCliente: TPageIdentificarCliente
   Font.Height = -12
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
   OnResize = FormResize
   OnShow = FormShow
   TextHeight = 14

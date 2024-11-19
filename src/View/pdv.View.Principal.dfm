@@ -12,7 +12,6 @@ object frmPrincipal: TfrmPrincipal
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
-  OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -918,9 +917,8 @@ object frmPrincipal: TfrmPrincipal
             ParentFont = False
             TabOrder = 1
             Visible = False
-            ExplicitLeft = 168
-            ExplicitTop = 256
-            ExplicitWidth = 185
+            ExplicitTop = 456
+            ExplicitWidth = 769
           end
         end
       end
@@ -1184,6 +1182,8 @@ object frmPrincipal: TfrmPrincipal
         Placement = svpRight
         TabOrder = 3
         UseAnimation = False
+        ExplicitLeft = 1179
+        ExplicitHeight = 502
         object pnlSplit: TPanel
           Left = 0
           Top = 0

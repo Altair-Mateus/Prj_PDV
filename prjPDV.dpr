@@ -11,7 +11,9 @@ uses
   pdv.View.Page.Dinheiro in 'src\View\pdv.View.Page.Dinheiro.pas' {FrameDinheiro: TFrame},
   pdv.View.Page.Cartao in 'src\View\pdv.View.Page.Cartao.pas' {FrameCartao: TFrame},
   pdv.View.Page.identificarCliente in 'src\View\pdv.View.Page.identificarCliente.pas' {PageIdentificarCliente},
-  pdv.View.Page.ImportarCliente in 'src\View\pdv.View.Page.ImportarCliente.pas' {PageImportarCliente};
+  pdv.View.Page.ImportarCliente in 'src\View\pdv.View.Page.ImportarCliente.pas' {PageImportarCliente},
+  pdv.View.Page.AbrirCaixa in 'src\View\pdv.View.Page.AbrirCaixa.pas' {PageAberturaCaixa},
+  pdv.Model.cAIXA in 'src\model\pdv.Model.cAIXA.pas';
 
 {$R *.res}
 
@@ -20,5 +22,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TdmDados, dmDados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TPageAberturaCaixa, PageAberturaCaixa);
   Application.Run;
 end.
