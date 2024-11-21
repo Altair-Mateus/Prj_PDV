@@ -74,10 +74,6 @@ object PageAberturaCaixa: TPageAberturaCaixa
       Padding.Right = 150
       Padding.Bottom = 100
       TabOrder = 2
-      ExplicitLeft = 208
-      ExplicitTop = 184
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object pnlInfoCaixa: TPanel
         Left = 150
         Top = 100
@@ -86,10 +82,6 @@ object PageAberturaCaixa: TPageAberturaCaixa
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 208
-        ExplicitTop = 144
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object pnlBtnAbrirCaixa: TPanel
           Left = 0
           Top = 66
@@ -100,9 +92,6 @@ object PageAberturaCaixa: TPageAberturaCaixa
           Padding.Top = 2
           Padding.Bottom = 2
           TabOrder = 0
-          ExplicitTop = 0
-          ExplicitWidth = 293
-          ExplicitHeight = 66
           object shpBtnAbrirCaixa: TShape
             Left = 0
             Top = 2
@@ -131,6 +120,7 @@ object PageAberturaCaixa: TPageAberturaCaixa
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            OnClick = btnAbrirCaixaClick
             ExplicitLeft = 136
             ExplicitTop = 24
             ExplicitWidth = 23
@@ -145,8 +135,6 @@ object PageAberturaCaixa: TPageAberturaCaixa
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitTop = 32
-          ExplicitWidth = 293
           object pnlTituloDispCaixa: TPanel
             Left = 0
             Top = 0
@@ -162,7 +150,6 @@ object PageAberturaCaixa: TPageAberturaCaixa
             Font.Style = []
             ParentFont = False
             TabOrder = 0
-            ExplicitWidth = 293
           end
           object pnlEdtDispCaixa: TPanel
             Left = 0
@@ -172,10 +159,6 @@ object PageAberturaCaixa: TPageAberturaCaixa
             Align = alClient
             BevelOuter = bvNone
             TabOrder = 1
-            ExplicitLeft = 56
-            ExplicitTop = 16
-            ExplicitWidth = 185
-            ExplicitHeight = 41
             object shpEdtDispCaixa: TShape
               Left = 0
               Top = 0
@@ -206,10 +189,6 @@ object PageAberturaCaixa: TPageAberturaCaixa
               ParentFont = False
               TabOrder = 0
               Text = 'R$ 0,00'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 293
-              ExplicitHeight = 46
             end
           end
         end

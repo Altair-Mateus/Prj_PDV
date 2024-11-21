@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
+  pdv.Model.cAIXA;
 
 type
   TPageAberturaCaixa = class(TForm)
@@ -24,11 +25,16 @@ type
     btnAbrirCaixa: TSpeedButton;
     procedure FormResize(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnAbrirCaixaClick(Sender: TObject);
   private
+    FProc: TProc<TCaixa>;
     procedure Responsive;
+    procedure AbrirCaixa;
   public
     function Embed(Value: TWinControl): TPageAberturaCaixa;
+    function Informacoes(Value: TProc<TCaixa>): TPageAberturaCaixa;
     class function New(AOwner: TComponent): TPageAberturaCaixa;
+
   end;
 
 var
@@ -38,6 +44,34 @@ implementation
 
 {$R *.dfm}
 { TPageAberturaCaixa }
+
+procedure TPageAberturaCaixa.AbrirCaixa;
+var
+  lCaixa: TCaixa;
+  lData: TDateTime;
+  lTurno: TTurno;
+begin
+  lData := Now;
+  lCaixa := TCaixa.New;
+  try
+    lCaixa.Id := 1;
+    lCaixa.cAIXA := 1;
+    lCaixa.Turno := lTurno.RetornaTurno(lData);
+    lCaixa.Aberto := True;
+    lCaixa.DataHoraAbertura := lData;
+    lCaixa.SaldoInicial := StrToFloat(StringReplace(edtValorSuprimento.Text,
+      'R$ ', '', [rfReplaceAll, rfIgnoreCase]));
+    FProc(lCaixa);
+  finally
+    lCaixa.Free;
+  end;
+end;
+
+procedure TPageAberturaCaixa.btnAbrirCaixaClick(Sender: TObject);
+begin
+  AbrirCaixa;
+  Close;
+end;
 
 function TPageAberturaCaixa.Embed(Value: TWinControl): TPageAberturaCaixa;
 begin
@@ -57,6 +91,13 @@ end;
 procedure TPageAberturaCaixa.FormResize(Sender: TObject);
 begin
   Responsive;
+end;
+
+function TPageAberturaCaixa.Informacoes(Value: TProc<TCaixa>)
+  : TPageAberturaCaixa;
+begin
+  FProc := Value;
+  Result := Self;
 end;
 
 class function TPageAberturaCaixa.New(AOwner: TComponent): TPageAberturaCaixa;

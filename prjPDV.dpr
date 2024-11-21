@@ -13,7 +13,9 @@ uses
   pdv.View.Page.identificarCliente in 'src\View\pdv.View.Page.identificarCliente.pas' {PageIdentificarCliente},
   pdv.View.Page.ImportarCliente in 'src\View\pdv.View.Page.ImportarCliente.pas' {PageImportarCliente},
   pdv.View.Page.AbrirCaixa in 'src\View\pdv.View.Page.AbrirCaixa.pas' {PageAberturaCaixa},
-  pdv.Model.cAIXA in 'src\model\pdv.Model.cAIXA.pas';
+  pdv.Model.cAIXA in 'src\model\pdv.Model.cAIXA.pas',
+  pdv.View.Page.FecharCaixa in 'src\View\pdv.View.Page.FecharCaixa.pas' {PageFechamentoCaixa},
+  pdv.View.Componente.Frame.PgtoCaixa in 'src\View\componente\pdv.View.Componente.Frame.PgtoCaixa.pas' {FramePgtoFechamentoCaixa: TFrame};
 
 {$R *.res}
 
@@ -23,5 +25,6 @@ begin
   Application.CreateForm(TdmDados, dmDados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TPageAberturaCaixa, PageAberturaCaixa);
+  Application.CreateForm(TPageFechamentoCaixa, PageFechamentoCaixa);
   Application.Run;
 end.

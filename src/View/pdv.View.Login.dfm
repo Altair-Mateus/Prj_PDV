@@ -72,11 +72,10 @@ object frmLogin: TfrmLogin
           object lblUsuario: TLabel
             Left = 0
             Top = 0
-            Width = 231
+            Width = 54
             Height = 19
             Align = alTop
             Caption = 'Usu'#225'rio'
-            ExplicitWidth = 54
           end
           object shpLogin: TShape
             AlignWithMargins = True
@@ -122,11 +121,10 @@ object frmLogin: TfrmLogin
           object lblSenha: TLabel
             Left = 0
             Top = 0
-            Width = 231
+            Width = 43
             Height = 19
             Align = alTop
             Caption = 'Senha'
-            ExplicitWidth = 43
           end
           object shpSenha: TShape
             AlignWithMargins = True

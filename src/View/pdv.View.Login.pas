@@ -51,11 +51,12 @@ implementation
 procedure TfrmLogin.btnLogarClick(Sender: TObject);
 begin
 
-  if not((edtUsuario.Text = 'Altair') and (edtSenha.Text = '123')) then
+  if not((edtUsuario.Text = 'altair') and (edtSenha.Text = '123')) then
   begin
     ShowMessage('Logins e senha inválido!');
     exit
   end;
+  FProc(edtUsuario.Text);
   close;
 
 end;

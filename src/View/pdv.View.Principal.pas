@@ -177,18 +177,17 @@ end;
 
 procedure TfrmPrincipal.ExibeTelaLogin;
 begin
-  FLogin := TfrmLogin.New(Self).Embed(pnlMaster).Informacao(
+  FLogin := TfrmLogin.New(Self).Embed(pnlMaster);
+
+  FLogin.Informacao(
     procedure(Value: String)
     begin
       if not(Assigned(FCaixa)) then
         FCaixa := TCaixa.New;
 
       FCaixa.Operador := Value;
-    end);
-
-  FLogin.Show;
-  VerificaStatusCaixa;
-
+      VerificaStatusCaixa;
+    end).Show;
 end;
 
 procedure TfrmPrincipal.DestroyObjetos;
@@ -233,7 +232,22 @@ begin
   if not Assigned(FAbrirCaixa) then
     FAbrirCaixa := TPageAberturaCaixa.New(Self).Embed(pnlMaster);
 
-  FAbrirCaixa.Show;
+  FAbrirCaixa.Informacoes(
+    procedure(Value: TCaixa)
+    begin
+      if Assigned(FCaixa) then
+      begin
+        FCaixa.Id := Value.Id;
+        FCaixa.cAIXA := Value.cAIXA;
+        FCaixa.Turno := Value.Turno;
+        FCaixa.Aberto := Value.Aberto;
+        FCaixa.DataHoraAbertura := Value.DataHoraAbertura;
+        FCaixa.SaldoInicial := Value.SaldoInicial;
+
+        VerificaStatusCaixa;
+      end;
+
+    end).Show;
 end;
 
 procedure TfrmPrincipal.FixarForm;
@@ -262,27 +276,24 @@ var
   lForm: TForm;
 begin
 
-  for I := Pred(pnlMaster.ControlCount) downto 0 do
-  begin
-
-    if (pnlMaster.Controls[I] is TForm) then
-    begin
-      if not(Shift = [ssCtrl]) then
-      begin
-        lForm := TForm(pnlMaster.Controls[I]);
-
-        if (lForm.KeyPreview) then
-          lKeyEvent := lForm.OnKeyDown;
-
-        // Se estiver assinado passa os comandos de atalho a tela embedada no painel
-        if (Assigned(lKeyEvent)) then
-        begin
-          lKeyEvent(Sender, Key, Shift);
-          exit;
-        end;
-      end;
-    end;
-  end;
+  // for I := Pred(pnlMaster.ControlCount) downto 0 do
+  // begin
+  // if (pnlMaster.Controls[I] is TForm) then
+  // begin
+  // if not(Shift = [ssCtrl]) then
+  // begin
+  // if TForm(pnlMaster.Controls[I]).KeyPreview then
+  // lKeyEvent := TForm(pnlMaster.Controls[I]).OnKeyDown;
+  //
+  // if Assigned(lKeyEvent) then
+  // begin
+  // lKeyEvent(Sender, Key, Shift);
+  //
+  // exit;
+  // end;
+  // end;
+  // end;
+  // end;
 
   case Key of
 
@@ -359,13 +370,15 @@ end;
 
 procedure TfrmPrincipal.VerificaStatusCaixa;
 begin
+  LimparCampos;
+
   if (FCaixa.Aberto) then
     pnlTitle.Caption := 'Caixa Aberto'
   else
     pnlTitle.Caption := 'Caixa Fechado';
 
   InfoOperador;
-  LimparCampos;
+
 end;
 
 end.
