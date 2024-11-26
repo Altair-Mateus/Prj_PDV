@@ -15,6 +15,7 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
   KeyPreview = True
   OnKeyDown = FormKeyDown
   OnResize = FormResize
+  OnShow = FormShow
   TextHeight = 16
   object pnlContainerFechamento: TPanel
     AlignWithMargins = True
@@ -74,9 +75,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
       Padding.Right = 10
       Padding.Bottom = 10
       TabOrder = 2
-      ExplicitLeft = 0
-      ExplicitTop = 83
-      ExplicitHeight = 326
       object pnlFuncoes: TPanel
         Left = 10
         Top = 20
@@ -93,7 +91,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
           Align = alRight
           BevelOuter = bvNone
           TabOrder = 0
-          ExplicitLeft = 382
           object shpBtnAdicionar: TShape
             Left = 0
             Top = 0
@@ -122,6 +119,7 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            OnClick = btnAdicionarClick
             ExplicitLeft = 16
             ExplicitTop = 16
             ExplicitWidth = 23
@@ -136,10 +134,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitLeft = 192
-          ExplicitTop = 8
-          ExplicitWidth = 185
-          ExplicitHeight = 41
           object Panel4: TPanel
             Left = 0
             Top = 0
@@ -165,7 +159,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
               Font.Style = []
               ParentFont = False
               TabOrder = 0
-              Text = 'ComboBox1'
             end
           end
           object pnlEdtValor: TPanel
@@ -180,8 +173,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
             Padding.Right = 10
             Padding.Bottom = 20
             TabOrder = 1
-            ExplicitLeft = 8
-            ExplicitWidth = 233
             object edtValor: TEdit
               Left = 10
               Top = 15
@@ -199,7 +190,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
               ParentFont = False
               TabOrder = 0
               Text = 'R$ 0,00'
-              ExplicitHeight = 36
             end
           end
         end
@@ -212,9 +202,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitLeft = 200
-        ExplicitTop = 144
-        ExplicitWidth = 185
         object pnlBtnCancelar: TPanel
           Left = 0
           Top = 0
@@ -252,6 +239,7 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            OnClick = btnCancelarClick
             ExplicitLeft = 128
             ExplicitTop = 8
             ExplicitWidth = 23
@@ -267,8 +255,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
           BevelOuter = bvNone
           Padding.Right = 5
           TabOrder = 1
-          ExplicitLeft = 192
-          ExplicitWidth = 185
           object shpBtnConfirmar: TShape
             Left = 0
             Top = 0
@@ -309,11 +295,7 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitLeft = 200
-        ExplicitTop = 144
-        ExplicitWidth = 185
-        ExplicitHeight = 41
-        object ListBox1: TListBox
+        object lbxPagamentos: TListBox
           Left = 0
           Top = 0
           Width = 567
@@ -322,7 +304,6 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
           BorderStyle = bsNone
           ParentColor = True
           TabOrder = 0
-          ExplicitHeight = 194
         end
       end
     end

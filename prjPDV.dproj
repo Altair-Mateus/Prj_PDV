@@ -160,6 +160,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="src\model\pdv.Model.FechamentoCaixa.pas"/>
+        <DCCReference Include="src\model\pdv.Model.Enum.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

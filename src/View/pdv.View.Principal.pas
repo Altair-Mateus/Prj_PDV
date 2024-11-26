@@ -8,7 +8,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.jpeg, pdv.View.Login,
   Vcl.WinXCtrls, pdv.View.Page.Pagamento, pdv.View.Page.identificarCliente,
-  pdv.View.Page.ImportarCliente, pdv.View.Page.AbrirCaixa, pdv.Model.cAIXA;
+  pdv.View.Page.ImportarCliente, pdv.View.Page.AbrirCaixa, pdv.Model.cAIXA,
+  pdv.View.Page.FecharCaixa;
 
 type
   TfrmPrincipal = class(TForm)
@@ -23,7 +24,7 @@ type
     btnCancelarOp: TSpeedButton;
     pnlConsultarPreco: TPanel;
     shpConsultarPreco: TShape;
-    btnConsultarPreco: TSpeedButton;
+    btnFecharCaixa: TSpeedButton;
     pnlAbrirCaixa: TPanel;
     shpAbrirCaixa: TShape;
     btnAbrirCaixa: TSpeedButton;
@@ -96,6 +97,7 @@ type
     FImportarCliente: TPageImportarCliente;
     FAbrirCaixa: TPageAberturaCaixa;
     FCaixa: TCaixa;
+    FFecharCaixa: TPageFechamentoCaixa;
 
     procedure MontarBotoes;
     procedure FixarForm;
@@ -107,6 +109,7 @@ type
     procedure ExibeTelaImpCliente;
     procedure ExibeTelaAbrirCaixa;
     procedure ExibeTelaLogin;
+    procedure ExibeTelaFecharCaixa;
     procedure DestroyTelas;
     procedure DestroyObjetos;
 
@@ -211,6 +214,9 @@ begin
 
   if Assigned(FAbrirCaixa) then
     FAbrirCaixa.Release;
+
+  if Assigned(FFecharCaixa) then
+    FFecharCaixa.Release;
 end;
 
 procedure TfrmPrincipal.ExibeTelaPagamentos;
@@ -247,6 +253,21 @@ begin
         VerificaStatusCaixa;
       end;
 
+    end).Show;
+end;
+
+procedure TfrmPrincipal.ExibeTelaFecharCaixa;
+begin
+  if not Assigned(FFecharCaixa) then
+    FFecharCaixa := TPageFechamentoCaixa.New(Self).Embed(pnlMaster);
+
+  FFecharCaixa.Informacoes(
+    procedure(Value: TCaixa)
+    begin
+      FCaixa.Aberto := Value.Aberto;
+      FCaixa.DataHoraFechamento := Value.DataHoraFechamento;
+
+      VerificaStatusCaixa;
     end).Show;
 end;
 
@@ -304,7 +325,7 @@ begin
     VK_F2:
       ExibeTelaAbrirCaixa;
     VK_F4:
-      ShowMessage('Consultar Preço');
+      ExibeTelaFecharCaixa;
     VK_F5:
       ShowMessage('Cancelar Item');
     VK_F6:
@@ -355,7 +376,7 @@ procedure TfrmPrincipal.MontarBotoes;
 begin
 
   btnCancelarOp.Caption := 'Cancelar Operação' + ''#13'' + '(F10)';
-  btnConsultarPreco.Caption := 'Consultar Preço' + ''#13'' + '(F4)';
+  btnFecharCaixa.Caption := 'Fechar Caixa' + ''#13'' + '(F4)';
   btnAbrirCaixa.Caption := 'Abrir Caixa' + ''#13'' + '(F2)';
   btnCancelarVenda.Caption := 'Cancelar Venda' + ''#13'' + '(F6)';
   btnCancelarItem.Caption := 'Cancelar Item' + ''#13'' + '(F5)';

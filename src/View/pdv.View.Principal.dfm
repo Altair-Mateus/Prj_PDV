@@ -1002,13 +1002,13 @@ object frmPrincipal: TfrmPrincipal
             ExplicitWidth = 65
             ExplicitHeight = 65
           end
-          object btnConsultarPreco: TSpeedButton
+          object btnFecharCaixa: TSpeedButton
             Left = 0
             Top = 0
             Width = 190
             Height = 80
             Align = alClient
-            Caption = 'Consultar Pre'#231'o'
+            Caption = 'Fechar Caixa'
             ExplicitLeft = 56
             ExplicitTop = 24
             ExplicitWidth = 23

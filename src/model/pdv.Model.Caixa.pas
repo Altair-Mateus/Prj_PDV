@@ -25,10 +25,11 @@ type
     FAberto: Boolean;
     FDataHoraAbertura: TDateTime;
     FSaldoInicial: Double;
+    FDataHoraFechamento: TDateTime;
 
   public
     property Id: Integer read FId write FId;
-    property Caixa: Integer read FCaixa write FCaixa;
+    property cAIXA: Integer read FCaixa write FCaixa;
     property Turno: TTurno read FTurno write FTurno;
     property Operador: String read FOperador write FOperador;
     property Supervisor: String read FSupervisor write FSupervisor;
@@ -36,6 +37,8 @@ type
     property DataHoraAbertura: TDateTime read FDataHoraAbertura
       write FDataHoraAbertura;
     property SaldoInicial: Double read FSaldoInicial write FSaldoInicial;
+    property DataHoraFechamento: TDateTime read FDataHoraFechamento
+      write FDataHoraFechamento;
 
     class function New: TCaixa;
   end;
