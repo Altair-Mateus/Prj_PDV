@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  pdv.Model.cAIXA, pdv.View.Componente.Frame.PgtoCaixa;
+  pdv.Model.cAIXA, pdv.View.Componente.Frame.PgtoCaixa, pdv.View.Utils;
 
 type
   TPageFechamentoCaixa = class(TForm)
@@ -37,6 +37,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormDestroy(Sender: TObject);
   private
     FProc: TProc<TCaixa>;
     FIndex: Integer;
@@ -46,14 +48,11 @@ type
     procedure AlimentaComboBox;
     procedure AdicionaPagamento(Sender: TObject);
     procedure RemoveItemLista(Sender: TObject);
-    procedure Fechar;
     procedure Confirmar;
 
   public
-    function Embed(Value: TWinControl): TPageFechamentoCaixa;
+    function Embed(Value: TPanel): TPageFechamentoCaixa;
     function Informacoes(Value: TProc<TCaixa>): TPageFechamentoCaixa;
-
-    destructor Destroy; override;
 
     class function New(AOwner: TComponent): TPageFechamentoCaixa;
 
@@ -99,7 +98,7 @@ end;
 
 procedure TPageFechamentoCaixa.btnCancelarClick(Sender: TObject);
 begin
-  Fechar;
+  Self.RemoveObject;
 end;
 
 procedure TPageFechamentoCaixa.Confirmar;
@@ -118,26 +117,25 @@ begin
     lCaixa.Free;
   end;
 
-  Fechar;
+  Self.RemoveObject;
 end;
 
-destructor TPageFechamentoCaixa.Destroy;
+function TPageFechamentoCaixa.Embed(Value: TPanel): TPageFechamentoCaixa;
+begin
+  Self.AddObject(Value);
+  Result := Self;
+end;
+
+procedure TPageFechamentoCaixa.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
+end;
+
+procedure TPageFechamentoCaixa.FormDestroy(Sender: TObject);
 begin
   if Assigned(FLista) then
     FLista.Free;
-  inherited;
-
-end;
-
-procedure TPageFechamentoCaixa.Fechar;
-begin
-  Close;
-end;
-
-function TPageFechamentoCaixa.Embed(Value: TWinControl): TPageFechamentoCaixa;
-begin
-  Self.Parent := Value;
-  Result := Self;
 end;
 
 procedure TPageFechamentoCaixa.FormKeyDown(Sender: TObject; var Key: Word;
@@ -145,7 +143,7 @@ procedure TPageFechamentoCaixa.FormKeyDown(Sender: TObject; var Key: Word;
 begin
   case Key of
     VK_ESCAPE:
-      Close;
+      Self.RemoveObject;
   end;
 end;
 

@@ -92,12 +92,7 @@ type
     procedure FormDestroy(Sender: TObject);
 
   private
-    FLogin: TfrmLogin;
-    FIdentCliente, FIdentCpf: TPageIdentificarCliente;
-    FImportarCliente: TPageImportarCliente;
-    FAbrirCaixa: TPageAberturaCaixa;
     FCaixa: TCaixa;
-    FFecharCaixa: TPageFechamentoCaixa;
 
     procedure MontarBotoes;
     procedure FixarForm;
@@ -110,7 +105,6 @@ type
     procedure ExibeTelaAbrirCaixa;
     procedure ExibeTelaLogin;
     procedure ExibeTelaFecharCaixa;
-    procedure DestroyTelas;
     procedure DestroyObjetos;
 
     procedure LimparCampos;
@@ -138,51 +132,42 @@ end;
 
 procedure TfrmPrincipal.ExibeTelaidCliente;
 begin
-  if not(Assigned(FIdentCliente)) then
-    FIdentCliente := TPageIdentificarCliente.New(Self).Embed(pnlMaster);
+  TPageIdentificarCliente.New(Self).Embed(pnlMaster);
 
-  FIdentCliente.Show;
 end;
 
 procedure TfrmPrincipal.ExibeTelaIdCpf;
 begin
-  if not(Assigned(FIdentCpf)) then
-    FIdentCpf := TPageIdentificarCliente.New(Self).Embed(pnlMaster)
-      .IdentificaCpf.identificarCliente(
-      procedure(aCpf, aCLiente: String)
+
+  TPageIdentificarCliente.New(Self).Embed(pnlMaster)
+    .IdentificaCpf.identificarCliente(
+    procedure(aCpf, aCLiente: String)
+    begin
+
+      if (not aCLiente.IsEmpty) then
+        aCLiente := 'Cliente: ' + aCLiente;
+      if (not aCpf.IsEmpty) then
+        aCpf := 'CPF: ' + aCpf;
+
+      if ((not aCLiente.IsEmpty) or (not aCpf.IsEmpty)) then
       begin
+        pnlIdCliente.Caption := aCLiente + ' ' + aCpf;
+        pnlIdCliente.Visible := True;
+      end;
+    end);
 
-        if (not aCLiente.IsEmpty) then
-          aCLiente := 'Cliente: ' + aCLiente;
-        if (not aCpf.IsEmpty) then
-          aCpf := 'CPF: ' + aCpf;
-
-        if ((not aCLiente.IsEmpty) or (not aCpf.IsEmpty)) then
-        begin
-          pnlIdCliente.Caption := aCLiente + ' ' + aCpf;
-          pnlIdCliente.Visible := True;
-        end;
-      end);
-
-  FIdentCpf.Show;
 end;
 
 procedure TfrmPrincipal.ExibeTelaImpCliente;
 begin
-  if not(Assigned(FImportarCliente)) then
-  begin
-    FImportarCliente := TPageImportarCliente.New(Self).Embed(pnlMaster)
-      .Titulo('Lista de Clientes');
-  end;
 
-  FImportarCliente.Show;
+  TPageImportarCliente.New(Self).Embed(pnlMaster).Titulo('Lista de Clientes');
+
 end;
 
 procedure TfrmPrincipal.ExibeTelaLogin;
 begin
-  FLogin := TfrmLogin.New(Self).Embed(pnlMaster);
-
-  FLogin.Informacao(
+  TfrmLogin.New(Self).Embed(pnlMaster).Informacao(
     procedure(Value: String)
     begin
       if not(Assigned(FCaixa)) then
@@ -190,33 +175,12 @@ begin
 
       FCaixa.Operador := Value;
       VerificaStatusCaixa;
-    end).Show;
+    end);
 end;
 
 procedure TfrmPrincipal.DestroyObjetos;
 begin
   FCaixa.Free;
-end;
-
-procedure TfrmPrincipal.DestroyTelas;
-begin
-  if (Assigned(FIdentCliente)) then
-    FIdentCliente.Release;
-
-  if (Assigned(FIdentCpf)) then
-    FIdentCpf.Release;
-
-  if Assigned(FLogin) then
-    FLogin.Release;
-
-  if Assigned(FImportarCliente) then
-    FImportarCliente.Release;
-
-  if Assigned(FAbrirCaixa) then
-    FAbrirCaixa.Release;
-
-  if Assigned(FFecharCaixa) then
-    FFecharCaixa.Release;
 end;
 
 procedure TfrmPrincipal.ExibeTelaPagamentos;
@@ -235,40 +199,41 @@ end;
 
 procedure TfrmPrincipal.ExibeTelaAbrirCaixa;
 begin
-  if not Assigned(FAbrirCaixa) then
-    FAbrirCaixa := TPageAberturaCaixa.New(Self).Embed(pnlMaster);
 
-  FAbrirCaixa.Informacoes(
-    procedure(Value: TCaixa)
-    begin
-      if Assigned(FCaixa) then
+  if not(FCaixa.Aberto) then
+  begin
+
+    TPageAberturaCaixa.New(Self).Embed(pnlMaster).Informacoes(
+      procedure(Value: TCaixa)
       begin
-        FCaixa.Id := Value.Id;
-        FCaixa.cAIXA := Value.cAIXA;
-        FCaixa.Turno := Value.Turno;
-        FCaixa.Aberto := Value.Aberto;
-        FCaixa.DataHoraAbertura := Value.DataHoraAbertura;
-        FCaixa.SaldoInicial := Value.SaldoInicial;
+        if Assigned(FCaixa) then
+        begin
+          FCaixa.Id := Value.Id;
+          FCaixa.cAIXA := Value.cAIXA;
+          FCaixa.Turno := Value.Turno;
+          FCaixa.Aberto := Value.Aberto;
+          FCaixa.DataHoraAbertura := Value.DataHoraAbertura;
+          FCaixa.SaldoInicial := Value.SaldoInicial;
 
-        VerificaStatusCaixa;
-      end;
+          VerificaStatusCaixa;
+        end;
 
-    end).Show;
+      end);
+  end;
+
 end;
 
 procedure TfrmPrincipal.ExibeTelaFecharCaixa;
 begin
-  if not Assigned(FFecharCaixa) then
-    FFecharCaixa := TPageFechamentoCaixa.New(Self).Embed(pnlMaster);
 
-  FFecharCaixa.Informacoes(
+  TPageFechamentoCaixa.New(Self).Embed(pnlMaster).Informacoes(
     procedure(Value: TCaixa)
     begin
       FCaixa.Aberto := Value.Aberto;
       FCaixa.DataHoraFechamento := Value.DataHoraFechamento;
 
       VerificaStatusCaixa;
-    end).Show;
+    end);
 end;
 
 procedure TfrmPrincipal.FixarForm;
@@ -285,7 +250,6 @@ end;
 
 procedure TfrmPrincipal.FormDestroy(Sender: TObject);
 begin
-  DestroyTelas;
   DestroyObjetos;
 end;
 
@@ -297,24 +261,23 @@ var
   lForm: TForm;
 begin
 
-  // for I := Pred(pnlMaster.ControlCount) downto 0 do
-  // begin
-  // if (pnlMaster.Controls[I] is TForm) then
-  // begin
-  // if not(Shift = [ssCtrl]) then
-  // begin
-  // if TForm(pnlMaster.Controls[I]).KeyPreview then
-  // lKeyEvent := TForm(pnlMaster.Controls[I]).OnKeyDown;
-  //
-  // if Assigned(lKeyEvent) then
-  // begin
-  // lKeyEvent(Sender, Key, Shift);
-  //
-  // exit;
-  // end;
-  // end;
-  // end;
-  // end;
+  for I := Pred(pnlMaster.ControlCount) downto 0 do
+  begin
+    if (pnlMaster.Controls[I] is TForm) and
+      (TForm(pnlMaster.Controls[I]).ModalResult = mrOk) then
+    begin
+
+      if ((TForm(pnlMaster.Controls[I]).KeyPreview) and (Assigned(lKeyEvent)))
+      then
+      begin
+        lKeyEvent := TForm(pnlMaster.Controls[I]).OnKeyDown;
+        lKeyEvent(Sender, Key, Shift);
+      end;
+
+      exit;
+
+    end;
+  end;
 
   case Key of
 

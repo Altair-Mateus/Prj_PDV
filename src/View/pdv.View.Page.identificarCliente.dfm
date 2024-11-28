@@ -13,6 +13,7 @@ object PageIdentificarCliente: TPageIdentificarCliente
   Font.Name = 'Tahoma'
   Font.Style = []
   KeyPreview = True
+  OnClose = FormClose
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   OnShow = FormShow

@@ -1182,8 +1182,6 @@ object frmPrincipal: TfrmPrincipal
         Placement = svpRight
         TabOrder = 3
         UseAnimation = False
-        ExplicitLeft = 1179
-        ExplicitHeight = 502
         object pnlSplit: TPanel
           Left = 0
           Top = 0
@@ -1321,7 +1319,7 @@ object frmPrincipal: TfrmPrincipal
             Height = 41
             Align = alTop
             BevelOuter = bvNone
-            Caption = 'Importar Cliente (CTRL)'
+            Caption = 'Importar Cliente (F1)'
             TabOrder = 6
             object shpInformarCliente: TShape
               Left = 0

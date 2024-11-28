@@ -17,12 +17,14 @@ uses
   pdv.View.Page.FecharCaixa in 'src\View\pdv.View.Page.FecharCaixa.pas' {PageFechamentoCaixa},
   pdv.View.Componente.Frame.PgtoCaixa in 'src\View\componente\pdv.View.Componente.Frame.PgtoCaixa.pas' {FramePgtoFechamentoCaixa: TFrame},
   pdv.Model.FechamentoCaixa in 'src\model\pdv.Model.FechamentoCaixa.pas',
-  pdv.Model.Enum in 'src\model\pdv.Model.Enum.pas';
+  pdv.Model.Enum in 'src\model\pdv.Model.Enum.pas',
+  pdv.View.Utils in 'src\utils\pdv.View.Utils.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  ReportMemoryLeaksOnShutdown := True;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TdmDados, dmDados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  pdv.Model.cAIXA;
+  pdv.Model.cAIXA, pdv.View.Utils;
 
 type
   TPageAberturaCaixa = class(TForm)
@@ -26,12 +26,13 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnAbrirCaixaClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FProc: TProc<TCaixa>;
     procedure Responsive;
     procedure AbrirCaixa;
   public
-    function Embed(Value: TWinControl): TPageAberturaCaixa;
+    function Embed(Value: TPanel): TPageAberturaCaixa;
     function Informacoes(Value: TProc<TCaixa>): TPageAberturaCaixa;
     class function New(AOwner: TComponent): TPageAberturaCaixa;
 
@@ -64,19 +65,26 @@ begin
     FProc(lCaixa);
   finally
     lCaixa.Free;
+    Self.RemoveObject;
   end;
 end;
 
 procedure TPageAberturaCaixa.btnAbrirCaixaClick(Sender: TObject);
 begin
   AbrirCaixa;
-  Close;
+  Self.RemoveObject;
 end;
 
-function TPageAberturaCaixa.Embed(Value: TWinControl): TPageAberturaCaixa;
+function TPageAberturaCaixa.Embed(Value: TPanel): TPageAberturaCaixa;
 begin
-  Self.Parent := Value;
+  Self.AddObject(Value);
   Result := Self;
+end;
+
+procedure TPageAberturaCaixa.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
 end;
 
 procedure TPageAberturaCaixa.FormKeyDown(Sender: TObject; var Key: Word;
@@ -84,7 +92,7 @@ procedure TPageAberturaCaixa.FormKeyDown(Sender: TObject; var Key: Word;
 begin
   case Key of
     VK_ESCAPE:
-      Close;
+      Self.RemoveObject;
   end;
 end;
 

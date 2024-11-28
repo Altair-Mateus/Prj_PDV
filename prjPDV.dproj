@@ -162,6 +162,7 @@
         </DCCReference>
         <DCCReference Include="src\model\pdv.Model.FechamentoCaixa.pas"/>
         <DCCReference Include="src\model\pdv.Model.Enum.pas"/>
+        <DCCReference Include="src\utils\pdv.View.Utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

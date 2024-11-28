@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Imaging.pngimage;
+  Vcl.Imaging.pngimage, pdv.View.Utils;
 
 type
   TPageIdentificarCliente = class(TForm)
@@ -38,11 +38,12 @@ type
     procedure FormResize(Sender: TObject);
     procedure ClickBtnConfirmar(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FProc: TProc<String, String>;
   public
     procedure ResizeIdCliente;
-    function Embed(Value: TWinControl): TPageIdentificarCliente;
+    function Embed(Value: TPanel): TPageIdentificarCliente;
     function IdentificaCpf: TPageIdentificarCliente;
     function identificarCliente(Value: TProc<String, String>)
       : TPageIdentificarCliente;
@@ -61,14 +62,19 @@ procedure TPageIdentificarCliente.ClickBtnConfirmar(Sender: TObject);
 begin
   if Assigned(FProc) then
     FProc(Trim(edtCnpjCpf.Text), Trim(edtNome.Text));
-  Close;
+  Self.RemoveObject;
 end;
 
-function TPageIdentificarCliente.Embed(Value: TWinControl)
-  : TPageIdentificarCliente;
+function TPageIdentificarCliente.Embed(Value: TPanel): TPageIdentificarCliente;
 begin
-  Self.Parent := Value;
+  Self.AddObject(Value);
   Result := Self;
+end;
+
+procedure TPageIdentificarCliente.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
 end;
 
 procedure TPageIdentificarCliente.FormKeyDown(Sender: TObject; var Key: Word;
@@ -80,10 +86,7 @@ begin
     VK_F5:
       ClickBtnConfirmar(Sender);
     VK_ESCAPE:
-      begin
-//        DisposeOf;
-        Close;
-      end;
+      Self.RemoveObject;
 
   end;
 end;

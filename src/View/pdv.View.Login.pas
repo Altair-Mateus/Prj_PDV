@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Imaging.pngimage, pdv.View.Componente.Transparencia;
+  Vcl.Imaging.pngimage, pdv.View.Componente.Transparencia, pdv.View.Utils;
 
 type
   TfrmLogin = class(TForm)
@@ -35,7 +35,7 @@ type
     FFundo: TfrmComponenteTransparencia;
     FProc: TProc<String>;
   public
-    function Embed(Value: TWinControl): TfrmLogin;
+    function Embed(Value: TPanel): TfrmLogin;
     function Informacao(Value: TProc<String>): TfrmLogin;
     class function New(AOwner: TComponent): TfrmLogin;
 
@@ -57,19 +57,20 @@ begin
     exit
   end;
   FProc(edtUsuario.Text);
-  close;
+  Self.RemoveObject;
 
 end;
 
-function TfrmLogin.Embed(Value: TWinControl): TfrmLogin;
+function TfrmLogin.Embed(Value: TPanel): TfrmLogin;
 begin
-  Self.Parent := Value;
+  Self.AddObject(Value);
   Result := Self;
 end;
 
 procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FFundo.Free;
+  Action := caFree;
 end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);

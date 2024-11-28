@@ -13,6 +13,8 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
   Font.Name = 'Tahoma'
   Font.Style = []
   KeyPreview = True
+  OnClose = FormClose
+  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   OnShow = FormShow
