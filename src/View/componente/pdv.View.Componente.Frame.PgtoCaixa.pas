@@ -18,6 +18,7 @@ type
     procedure btnRemoverClick(Sender: TObject);
   private
     FProc: TProc<TObject>;
+    FEventExcluir: TNotifyEvent;
   public
     function Embed(Value: TWinControl): TFramePgtoFechamentoCaixa;
     function Nome(Value: String): TFramePgtoFechamentoCaixa;
@@ -25,6 +26,9 @@ type
     function Valor(Value: String): TFramePgtoFechamentoCaixa;
     function Click(Value: TProc<TObject>): TFramePgtoFechamentoCaixa;
     function Alinhamento(Value: TAlign): TFramePgtoFechamentoCaixa;
+
+    // Propriedade para disparar eventos de exclusão
+    property EventExcluir: TNotifyEvent read FEventExcluir write FEventExcluir;
 
     class function New(AOwner: TComponent): TFramePgtoFechamentoCaixa;
   end;
@@ -34,18 +38,20 @@ implementation
 {$R *.dfm}
 { TFramePgtoFechamentoCaixa }
 
+procedure TFramePgtoFechamentoCaixa.btnRemoverClick(Sender: TObject);
+begin
+
+  // Dispara o evento atribuído ao Frame quando criado
+  if (Assigned(FEventExcluir)) then
+    FEventExcluir(Self);
+end;
+
 function TFramePgtoFechamentoCaixa.Alinhamento(Value: TAlign)
   : TFramePgtoFechamentoCaixa;
 begin
   Self.Align := alBottom;
   Self.Align := Value;
   Result := Self;
-end;
-
-procedure TFramePgtoFechamentoCaixa.btnRemoverClick(Sender: TObject);
-begin
-  if Assigned(FProc) then
-    FProc(Sender);
 end;
 
 function TFramePgtoFechamentoCaixa.Click(Value: TProc<TObject>)
@@ -85,7 +91,7 @@ end;
 function TFramePgtoFechamentoCaixa.Valor(Value: String)
   : TFramePgtoFechamentoCaixa;
 begin
-  pnlValor.Caption := Format('R$ %s', [Value]);
+  pnlValor.Caption := Format('%s', [Value]);
   Result := Self;
 end;
 

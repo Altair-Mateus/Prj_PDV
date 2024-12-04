@@ -37,9 +37,6 @@ object FramePgtoFechamentoCaixa: TFramePgtoFechamentoCaixa
     Padding.Right = 5
     Padding.Bottom = 5
     TabOrder = 0
-    ExplicitLeft = 160
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object pnlBtnRemover: TPanel
       Left = 468
       Top = 5
@@ -48,7 +45,6 @@ object FramePgtoFechamentoCaixa: TFramePgtoFechamentoCaixa
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 310
       object btnRemover: TSpeedButton
         Left = 0
         Top = 0
@@ -58,8 +54,8 @@ object FramePgtoFechamentoCaixa: TFramePgtoFechamentoCaixa
         Caption = '-'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clScrollBar
-        Font.Height = -16
+        Font.Color = clPurple
+        Font.Height = -17
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
@@ -79,7 +75,7 @@ object FramePgtoFechamentoCaixa: TFramePgtoFechamentoCaixa
       BevelOuter = bvNone
       Caption = 'Forma de Pagamento'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clScrollBar
+      Font.Color = clPurple
       Font.Height = -19
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -95,16 +91,12 @@ object FramePgtoFechamentoCaixa: TFramePgtoFechamentoCaixa
       BevelOuter = bvNone
       Caption = 'R$ 0,00'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clScrollBar
+      Font.Color = clPurple
       Font.Height = -20
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 160
-      ExplicitTop = 0
-      ExplicitWidth = 185
-      ExplicitHeight = 41
     end
   end
 end

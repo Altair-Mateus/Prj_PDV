@@ -14,6 +14,7 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
   Font.Style = []
   KeyPreview = True
   OnClose = FormClose
+  OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnResize = FormResize
@@ -154,6 +155,7 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
               Width = 213
               Height = 27
               Align = alClient
+              Style = csDropDownList
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -16
@@ -161,6 +163,7 @@ object PageFechamentoCaixa: TPageFechamentoCaixa
               Font.Style = []
               ParentFont = False
               TabOrder = 0
+              OnClick = cbxFormaPgtoClick
             end
           end
           object pnlEdtValor: TPanel

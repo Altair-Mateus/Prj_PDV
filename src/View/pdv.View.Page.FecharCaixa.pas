@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  pdv.Model.cAIXA, pdv.View.Componente.Frame.PgtoCaixa, pdv.View.Utils;
+  pdv.Model.cAIXA, pdv.View.Componente.Frame.PgtoCaixa, pdv.View.Utils,
+  System.Generics.Collections;
 
 type
   TPageFechamentoCaixa = class(TForm)
@@ -39,16 +40,20 @@ type
     procedure btnAdicionarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure cbxFormaPgtoClick(Sender: TObject);
   private
     FProc: TProc<TCaixa>;
     FIndex: Integer;
-    FLista: TFramePgtoFechamentoCaixa;
+    FLista: TObjectList<TFramePgtoFechamentoCaixa>;
 
     procedure Responsive;
     procedure AlimentaComboBox;
-    procedure AdicionaPagamento(Sender: TObject);
+    procedure AdicionaPagamento;
     procedure RemoveItemLista(Sender: TObject);
     procedure Confirmar;
+
+    procedure RemoverFrameLista(Sender: TObject);
 
   public
     function Embed(Value: TPanel): TPageFechamentoCaixa;
@@ -68,14 +73,25 @@ implementation
 uses pdv.Model.Enum;
 { TPageAberturaCaixa }
 
-procedure TPageFechamentoCaixa.AdicionaPagamento(Sender: TObject);
+procedure TPageFechamentoCaixa.AdicionaPagamento;
+var
+  lFrame: TFramePgtoFechamentoCaixa;
 begin
+
   Inc(FIndex);
 
-  FLista := TFramePgtoFechamentoCaixa.New(Self).TipoPagamento(cbxFormaPgto.Text)
+  // Criando o frame
+  lFrame := TFramePgtoFechamentoCaixa.New(Self).TipoPagamento(cbxFormaPgto.Text)
     .Valor(Trim(edtValor.Text)).Embed(lbxPagamentos)
-    .Nome('Frame' + FIndex.ToString).Click(RemoveItemLista).Alinhamento(alTop);
+    .Nome('Frame' + FIndex.ToString).Alinhamento(alTop);
 
+  // Aribuindo o evento ao TNotifyEvent de exclusão do Frame
+  lFrame.EventExcluir := RemoverFrameLista;
+
+  // Adicionando na lista de Frames
+  FLista.Add(lFrame);
+
+  cbxFormaPgto.ItemIndex := -1;
 end;
 
 procedure TPageFechamentoCaixa.AlimentaComboBox;
@@ -93,12 +109,17 @@ end;
 
 procedure TPageFechamentoCaixa.btnAdicionarClick(Sender: TObject);
 begin
-  AdicionaPagamento(Sender);
+  AdicionaPagamento;
 end;
 
 procedure TPageFechamentoCaixa.btnCancelarClick(Sender: TObject);
 begin
   Self.RemoveObject;
+end;
+
+procedure TPageFechamentoCaixa.cbxFormaPgtoClick(Sender: TObject);
+begin
+  edtValor.SetFocus;
 end;
 
 procedure TPageFechamentoCaixa.Confirmar;
@@ -130,6 +151,11 @@ procedure TPageFechamentoCaixa.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action := caFree;
+end;
+
+procedure TPageFechamentoCaixa.FormCreate(Sender: TObject);
+begin
+  FLista := TObjectList<TFramePgtoFechamentoCaixa>.Create;
 end;
 
 procedure TPageFechamentoCaixa.FormDestroy(Sender: TObject);
@@ -176,6 +202,30 @@ begin
   lbxPagamentos.DeleteSelected;
   // FLista.DisposeOf;
   Dec(FIndex);
+end;
+
+procedure TPageFechamentoCaixa.RemoverFrameLista(Sender: TObject);
+var
+  lFrame: TFramePgtoFechamentoCaixa;
+  lIndice: Integer;
+begin
+
+  // Verificação do Sender recebido
+  if (Sender is TFramePgtoFechamentoCaixa) then
+  begin
+
+    // Descobrindo o índice do Frame selecionado para exclusão
+    lFrame := TFramePgtoFechamentoCaixa(Sender);
+    lIndice := FLista.IndexOf(lFrame);
+
+    // Removendo o Frame da lista
+    if (lIndice >= 0) then
+    begin
+      FLista.Delete(lIndice);
+      Dec(FIndex);
+    end;
+
+  end;
 end;
 
 procedure TPageFechamentoCaixa.Responsive;
