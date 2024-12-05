@@ -1182,6 +1182,8 @@ object frmPrincipal: TfrmPrincipal
         Placement = svpRight
         TabOrder = 3
         UseAnimation = False
+        ExplicitLeft = 1179
+        ExplicitHeight = 502
         object pnlSplit: TPanel
           Left = 0
           Top = 0

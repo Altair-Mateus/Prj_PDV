@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Imaging.pngimage, pdv.View.Page.Pix, pdv.View.Page.Dinheiro,
-  pdv.View.Page.Cartao;
+  pdv.View.Page.Cartao, pdv.View.Utils;
 
 type
   TPagePagamentos = class(TForm)
@@ -77,6 +77,9 @@ type
     procedure ClickDinheiro(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormDestroy(Sender: TObject);
   private
     FFramePix: TFramePix;
     FFrameDinheiro: TFrameDinheiro;
@@ -90,9 +93,11 @@ type
     procedure SetClick(pShape: TShape);
 
     procedure ExibirFrame(const pFrame: TFrame);
-
+    procedure ResizeIdCliente;
   public
-    { Public declarations }
+
+    function Embed(Value: TPanel): TPagePagamentos;
+    class function New(AOwner: TComponent): TPagePagamentos;
   end;
 
 var
@@ -141,7 +146,7 @@ end;
 
 procedure TPagePagamentos.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  DestroyFrames;
+  Action := caFree;
 end;
 
 procedure TPagePagamentos.FormCreate(Sender: TObject);
@@ -149,11 +154,67 @@ begin
   InicializaFrames;
 end;
 
+procedure TPagePagamentos.FormDestroy(Sender: TObject);
+begin
+  DestroyFrames;
+end;
+
+procedure TPagePagamentos.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    VK_F5:
+      begin
+        ExibirFrame(FFrameCartao);
+      end;
+
+    VK_F6:
+      begin
+        ExibirFrame(FFramePix);
+      end;
+
+    VK_F7:
+      begin
+        ExibirFrame(FFrameDinheiro);
+      end;
+
+    VK_ESCAPE:
+      begin
+        Self.RemoveObject;
+      end;
+  end;
+end;
+
+procedure TPagePagamentos.FormShow(Sender: TObject);
+begin
+  ResizeIdCliente;
+end;
+
 procedure TPagePagamentos.InicializaFrames;
 begin
   CriaFramePix;
   CriaFrameDinheiro;
   CriaFrameCartao;
+end;
+
+class function TPagePagamentos.New(AOwner: TComponent): TPagePagamentos;
+begin
+  Result := Self.Create(AOwner);
+end;
+
+procedure TPagePagamentos.ResizeIdCliente;
+var
+  lHeight, lWidth: Integer;
+begin
+  lHeight := Round((Self.Height - pnlContainer.Height) / 2);
+  lWidth := Round((Self.Width - pnlContainer.Width) / 2);
+
+  pnlContainer.Margins.Left := lWidth;
+  pnlContainer.Margins.Right := lWidth;
+  pnlContainer.Margins.Top := lHeight;
+  pnlContainer.Margins.Bottom := lHeight;
+  pnlContainer.Align := alClient;
+
 end;
 
 procedure TPagePagamentos.SetClick(pShape: TShape);
@@ -172,6 +233,12 @@ begin
   FFramePix.Free;
   FFrameDinheiro.Free;
   FFrameCartao.Free;
+end;
+
+function TPagePagamentos.Embed(Value: TPanel): TPagePagamentos;
+begin
+  Self.AddObject(Value);
+  Result := Self;
 end;
 
 procedure TPagePagamentos.ExibirFrame(const pFrame: TFrame);

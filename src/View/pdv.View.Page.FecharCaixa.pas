@@ -50,7 +50,6 @@ type
     procedure Responsive;
     procedure AlimentaComboBox;
     procedure AdicionaPagamento;
-    procedure RemoveItemLista(Sender: TObject);
     procedure Confirmar;
 
     procedure RemoverFrameLista(Sender: TObject);
@@ -194,14 +193,6 @@ class function TPageFechamentoCaixa.New(AOwner: TComponent)
   : TPageFechamentoCaixa;
 begin
   Result := Self.Create(AOwner);
-end;
-
-procedure TPageFechamentoCaixa.RemoveItemLista(Sender: TObject);
-begin
-
-  lbxPagamentos.DeleteSelected;
-  // FLista.DisposeOf;
-  Dec(FIndex);
 end;
 
 procedure TPageFechamentoCaixa.RemoverFrameLista(Sender: TObject);

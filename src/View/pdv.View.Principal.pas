@@ -9,7 +9,7 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.jpeg, pdv.View.Login,
   Vcl.WinXCtrls, pdv.View.Page.Pagamento, pdv.View.Page.identificarCliente,
   pdv.View.Page.ImportarCliente, pdv.View.Page.AbrirCaixa, pdv.Model.cAIXA,
-  pdv.View.Page.FecharCaixa;
+  pdv.View.Page.FecharCaixa, pdv.View.Page.LoginSupervisor;
 
 type
   TfrmPrincipal = class(TForm)
@@ -105,6 +105,7 @@ type
     procedure ExibeTelaAbrirCaixa;
     procedure ExibeTelaLogin;
     procedure ExibeTelaFecharCaixa;
+    procedure ExibeTelaSupervisor;
     procedure DestroyObjetos;
 
     procedure LimparCampos;
@@ -184,17 +185,13 @@ begin
 end;
 
 procedure TfrmPrincipal.ExibeTelaPagamentos;
-var
-  lFormulario: TPagePagamentos;
 begin
+  TPagePagamentos.New(Self).Embed(pnlMaster);
+end;
 
-  lFormulario := TPagePagamentos.Create(nil);
-  try
-    lFormulario.Parent := pnlPag;
-    lFormulario.Show;
-    SplitViewAction(SplitViewPagamentos);
-  finally
-  end;
+procedure TfrmPrincipal.ExibeTelaSupervisor;
+begin
+  TPageLoginSupervisor.New(Self).Embed(pnlMaster);
 end;
 
 procedure TfrmPrincipal.ExibeTelaAbrirCaixa;
@@ -297,6 +294,8 @@ begin
       ExibeTelaPagamentos;
     VK_F9:
       ExibeTelaIdCpf;
+    VK_F11:
+      ExibeTelaSupervisor;
     VK_F12:
       btnMaisFuncoesClick(Sender);
 

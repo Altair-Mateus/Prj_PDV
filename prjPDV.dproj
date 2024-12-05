@@ -163,6 +163,10 @@
         <DCCReference Include="src\model\pdv.Model.FechamentoCaixa.pas"/>
         <DCCReference Include="src\model\pdv.Model.Enum.pas"/>
         <DCCReference Include="src\utils\pdv.View.Utils.pas"/>
+        <DCCReference Include="src\View\pdv.View.Page.LoginSupervisor.pas">
+            <Form>PageLoginSupervisor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

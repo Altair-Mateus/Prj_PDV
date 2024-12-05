@@ -1,25 +1,36 @@
 object PagePagamentos: TPagePagamentos
   Left = 0
   Top = 0
+  Align = alClient
+  AlphaBlend = True
+  AlphaBlendValue = 240
   BorderStyle = bsNone
   Caption = 'Form1'
-  ClientHeight = 550
-  ClientWidth = 840
-  Color = clBtnFace
+  ClientHeight = 710
+  ClientWidth = 1190
+  Color = clBackground
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
   TextHeight = 14
   object pnlContainer: TPanel
+    AlignWithMargins = True
     Left = 0
     Top = 0
     Width = 840
     Height = 550
-    Align = alClient
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
     BevelOuter = bvNone
     TabOrder = 0
     object pnlResumoVenda: TPanel
