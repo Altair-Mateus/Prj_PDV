@@ -19,7 +19,8 @@ uses
   pdv.Model.FechamentoCaixa in 'src\model\pdv.Model.FechamentoCaixa.pas',
   pdv.Model.Enum in 'src\model\pdv.Model.Enum.pas',
   pdv.View.Utils in 'src\utils\pdv.View.Utils.pas',
-  pdv.View.Page.LoginSupervisor in 'src\View\pdv.View.Page.LoginSupervisor.pas' {PageLoginSupervisor};
+  pdv.View.Page.LoginSupervisor in 'src\View\pdv.View.Page.LoginSupervisor.pas' {PageLoginSupervisor},
+  pdv.View.Componente.Frame.ItemVenda in 'src\View\componente\pdv.View.Componente.Frame.ItemVenda.pas' {FrameItemVenda: TFrame};
 
 {$R *.res}
 

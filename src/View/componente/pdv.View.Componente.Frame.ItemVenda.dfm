@@ -1,0 +1,147 @@
+object FrameItemVenda: TFrameItemVenda
+  Left = 0
+  Top = 0
+  Width = 780
+  Height = 50
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  ParentFont = False
+  TabOrder = 0
+  object pnlContainer: TPanel
+    Left = 0
+    Top = 0
+    Width = 780
+    Height = 50
+    Align = alClient
+    BevelOuter = bvNone
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    ExplicitLeft = 296
+    ExplicitTop = 8
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object shpSeparador: TShape
+      AlignWithMargins = True
+      Left = 2
+      Top = 46
+      Width = 776
+      Height = 1
+      Margins.Left = 2
+      Margins.Top = 0
+      Margins.Right = 2
+      Align = alBottom
+      Brush.Color = clBlack
+      ExplicitLeft = 0
+      ExplicitTop = -15
+      ExplicitWidth = 780
+    end
+    object pnlInfoItem: TPanel
+      Left = 0
+      Top = 0
+      Width = 780
+      Height = 46
+      Align = alClient
+      BevelOuter = bvNone
+      Padding.Left = 5
+      Padding.Top = 5
+      Padding.Right = 5
+      Padding.Bottom = 5
+      TabOrder = 0
+      ExplicitLeft = 296
+      ExplicitTop = 8
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object pnlNrItem: TPanel
+        Left = 5
+        Top = 5
+        Width = 40
+        Height = 36
+        Align = alLeft
+        Alignment = taLeftJustify
+        BevelOuter = bvNone
+        Caption = '1'
+        TabOrder = 0
+      end
+      object pnlCodItem: TPanel
+        Left = 45
+        Top = 5
+        Width = 115
+        Height = 36
+        Align = alLeft
+        Alignment = taLeftJustify
+        BevelOuter = bvNone
+        Caption = '123456789002'
+        TabOrder = 1
+      end
+      object pnlSubTotal: TPanel
+        Left = 685
+        Top = 5
+        Width = 90
+        Height = 36
+        Align = alRight
+        Alignment = taRightJustify
+        BevelOuter = bvNone
+        Caption = ' 10,00'
+        TabOrder = 2
+        ExplicitLeft = 665
+      end
+      object pnlQtd: TPanel
+        Left = 595
+        Top = 5
+        Width = 90
+        Height = 36
+        Align = alRight
+        Alignment = taRightJustify
+        BevelOuter = bvNone
+        Caption = '10,000'
+        TabOrder = 3
+        ExplicitLeft = 575
+      end
+      object pnlValorUnit: TPanel
+        Left = 495
+        Top = 5
+        Width = 100
+        Height = 36
+        Align = alRight
+        Alignment = taRightJustify
+        BevelOuter = bvNone
+        Caption = '1,00'
+        TabOrder = 4
+        ExplicitLeft = 485
+      end
+      object pnlDescricao: TPanel
+        Left = 160
+        Top = 5
+        Width = 335
+        Height = 36
+        Align = alClient
+        Alignment = taLeftJustify
+        BevelOuter = bvNone
+        Padding.Top = 10
+        TabOrder = 5
+        ExplicitLeft = 45
+        ExplicitWidth = 110
+        object lblDescricao: TLabel
+          Left = 0
+          Top = 10
+          Width = 335
+          Height = 26
+          Align = alClient
+          AutoSize = False
+          Caption = 'Sach'#234' Nescaf'#233' 10g'
+          WordWrap = True
+          ExplicitWidth = 132
+          ExplicitHeight = 19
+        end
+      end
+    end
+  end
+end

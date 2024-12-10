@@ -18,7 +18,7 @@ type
     pnlMain: TPanel;
     pnlButton: TPanel;
     pnlOperacoes: TPanel;
-    pnlGrid: TPanel;
+    pnlInfVenda: TPanel;
     pnlCancelarOp: TPanel;
     shpCancelarOp: TShape;
     btnCancelarOp: TSpeedButton;
@@ -37,7 +37,6 @@ type
     pnlMaisFuncoes: TPanel;
     shpMaisFuncoes: TShape;
     btnMaisFuncoes: TSpeedButton;
-    gridProdutos: TDBGrid;
     pnlTotalCompra: TPanel;
     lblTitTotalCompa: TLabel;
     shpTotalCompra: TShape;
@@ -86,10 +85,23 @@ type
     pnlImportarCliente: TPanel;
     shpInformarCliente: TShape;
     pnlIdCliente: TPanel;
+    pnlGrd: TPanel;
+    pnlTituloGrd: TPanel;
+    pnlTitGrdCodigo: TPanel;
+    pnlTitGrdItem: TPanel;
+    pnlTitGrdSubTotal: TPanel;
+    pnlTitGrdQtd: TPanel;
+    pnlTitGrdValorUnit: TPanel;
+    pnlTitGrdDescricao: TPanel;
+    pnlListaItens: TPanel;
+    shpSeparadorListaItens: TShape;
+    ltbItens: TListBox;
     procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure btnMaisFuncoesClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure edtProdutoKeyPress(Sender: TObject; var Key: Char);
+    procedure edtQuantidadeKeyPress(Sender: TObject; var Key: Char);
 
   private
     FCaixa: TCaixa;
@@ -184,6 +196,54 @@ begin
   FCaixa.Free;
 end;
 
+procedure TfrmPrincipal.edtProdutoKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not(FCaixa.Aberto) then
+  begin
+    Key := #0;
+    edtProduto.Clear;
+    Application.MessageBox('O caixa deve estar aberto!', 'Informação',
+      MB_ICONINFORMATION + MB_OK);
+    Exit;
+  end;
+
+  case Key of
+    '.', ',':
+      begin
+        Key := ',';
+        if Pos(',', edtProduto.Text) > 0 then
+          Key := #0;
+      end;
+
+    '*':
+      begin
+        if Pos('*', edtProduto.Text) > 0 then
+          Key := #0;
+      end;
+
+    '/':
+      begin
+        Application.MessageBox('Nenhuma balança configurada!', 'Balança',
+          MB_ICONINFORMATION + MB_OK);
+      end;
+
+    #13:
+      begin
+        // realizar implememntação com lista de objetos
+      end;
+
+  end;
+
+end;
+
+procedure TfrmPrincipal.edtQuantidadeKeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) then
+  begin
+    edtProduto.SetFocus;
+  end;
+end;
+
 procedure TfrmPrincipal.ExibeTelaPagamentos;
 begin
   TPagePagamentos.New(Self).Embed(pnlMaster);
@@ -271,9 +331,15 @@ begin
         lKeyEvent(Sender, Key, Shift);
       end;
 
-      exit;
+      Exit;
 
     end;
+  end;
+
+  if ((Shift = [ssCtrl]) and (Key = VK_MULTIPLY)) then
+  begin
+    edtQuantidade.Clear;
+    edtQuantidade.SetFocus;
   end;
 
   case Key of

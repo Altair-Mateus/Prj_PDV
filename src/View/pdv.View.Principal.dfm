@@ -304,6 +304,9 @@ object frmPrincipal: TfrmPrincipal
                 ParentFont = False
                 TabOrder = 0
                 Text = '0,850'
+                OnKeyPress = edtQuantidadeKeyPress
+                ExplicitLeft = 9
+                ExplicitTop = -10
               end
             end
           end
@@ -455,6 +458,7 @@ object frmPrincipal: TfrmPrincipal
                 ParentFont = False
                 TabOrder = 0
                 Text = '00021'
+                OnKeyPress = edtProdutoKeyPress
               end
             end
           end
@@ -786,7 +790,7 @@ object frmPrincipal: TfrmPrincipal
             end
           end
         end
-        object pnlGrid: TPanel
+        object pnlInfVenda: TPanel
           Left = 0
           Top = 0
           Width = 783
@@ -800,106 +804,6 @@ object frmPrincipal: TfrmPrincipal
           TabOrder = 1
           ExplicitWidth = 779
           ExplicitHeight = 502
-          object gridProdutos: TDBGrid
-            Left = 5
-            Top = 5
-            Width = 773
-            Height = 452
-            Align = alClient
-            BorderStyle = bsNone
-            DataSource = dsItens
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -16
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            Options = [dgTitles, dgRowLines, dgTabs, dgRowSelect, dgTitleHotTrack]
-            ParentFont = False
-            TabOrder = 0
-            TitleFont.Charset = DEFAULT_CHARSET
-            TitleFont.Color = clWindowText
-            TitleFont.Height = -16
-            TitleFont.Name = 'Tahoma'
-            TitleFont.Style = []
-            Columns = <
-              item
-                Expanded = False
-                FieldName = 'codigo'
-                Title.Caption = 'C'#243'digo'
-                Title.Font.Charset = DEFAULT_CHARSET
-                Title.Font.Color = clWindowText
-                Title.Font.Height = -13
-                Title.Font.Name = 'Tahoma'
-                Title.Font.Style = []
-                Width = 80
-                Visible = True
-              end
-              item
-                Alignment = taCenter
-                Expanded = False
-                FieldName = 'item'
-                Title.Alignment = taCenter
-                Title.Caption = 'Item'
-                Title.Font.Charset = DEFAULT_CHARSET
-                Title.Font.Color = clWindowText
-                Title.Font.Height = -13
-                Title.Font.Name = 'Tahoma'
-                Title.Font.Style = []
-                Width = 40
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'descricao'
-                Title.Caption = 'Descri'#231#227'o do Produto'
-                Title.Font.Charset = DEFAULT_CHARSET
-                Title.Font.Color = clWindowText
-                Title.Font.Height = -13
-                Title.Font.Name = 'Tahoma'
-                Title.Font.Style = []
-                Width = 350
-                Visible = True
-              end
-              item
-                Alignment = taLeftJustify
-                Expanded = False
-                FieldName = 'valorunitario'
-                Title.Caption = 'Valor Unit'#225'rio'
-                Title.Font.Charset = DEFAULT_CHARSET
-                Title.Font.Color = clWindowText
-                Title.Font.Height = -13
-                Title.Font.Name = 'Tahoma'
-                Title.Font.Style = []
-                Width = 88
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'quantidade'
-                Title.Alignment = taRightJustify
-                Title.Caption = 'Quantidade'
-                Title.Font.Charset = DEFAULT_CHARSET
-                Title.Font.Color = clWindowText
-                Title.Font.Height = -13
-                Title.Font.Name = 'Tahoma'
-                Title.Font.Style = []
-                Width = 76
-                Visible = True
-              end
-              item
-                Alignment = taLeftJustify
-                Expanded = False
-                FieldName = 'subtotal'
-                Title.Caption = 'Sub-Total'
-                Title.Font.Charset = DEFAULT_CHARSET
-                Title.Font.Color = clWindowText
-                Title.Font.Height = -13
-                Title.Font.Name = 'Tahoma'
-                Title.Font.Style = []
-                Width = 78
-                Visible = True
-              end>
-          end
           object pnlIdCliente: TPanel
             Left = 5
             Top = 457
@@ -915,10 +819,146 @@ object frmPrincipal: TfrmPrincipal
             Font.Style = []
             ParentBackground = False
             ParentFont = False
-            TabOrder = 1
+            TabOrder = 0
             Visible = False
-            ExplicitTop = 456
-            ExplicitWidth = 769
+            ExplicitLeft = 0
+            ExplicitTop = 462
+            ExplicitWidth = 1183
+          end
+          object pnlGrd: TPanel
+            Left = 5
+            Top = 5
+            Width = 773
+            Height = 452
+            Align = alClient
+            BevelOuter = bvNone
+            TabOrder = 1
+            ExplicitLeft = 296
+            ExplicitTop = 232
+            ExplicitWidth = 185
+            ExplicitHeight = 41
+            object pnlTituloGrd: TPanel
+              Left = 0
+              Top = 0
+              Width = 773
+              Height = 41
+              Align = alTop
+              BevelOuter = bvNone
+              Padding.Left = 5
+              Padding.Top = 5
+              Padding.Right = 5
+              Padding.Bottom = 5
+              TabOrder = 0
+              ExplicitLeft = 296
+              ExplicitTop = 208
+              ExplicitWidth = 185
+              object pnlTitGrdCodigo: TPanel
+                Left = 55
+                Top = 5
+                Width = 115
+                Height = 31
+                Align = alLeft
+                Alignment = taLeftJustify
+                BevelOuter = bvNone
+                Caption = 'C'#243'digo'
+                TabOrder = 0
+              end
+              object pnlTitGrdItem: TPanel
+                Left = 5
+                Top = 5
+                Width = 50
+                Height = 31
+                Align = alLeft
+                Alignment = taLeftJustify
+                BevelOuter = bvNone
+                Caption = 'Item'
+                TabOrder = 1
+                ExplicitLeft = 13
+                ExplicitTop = 10
+              end
+              object pnlTitGrdSubTotal: TPanel
+                Left = 678
+                Top = 5
+                Width = 90
+                Height = 31
+                Align = alRight
+                Alignment = taRightJustify
+                BevelOuter = bvNone
+                Caption = 'SubTotal'
+                TabOrder = 2
+                ExplicitLeft = 618
+              end
+              object pnlTitGrdQtd: TPanel
+                Left = 588
+                Top = 5
+                Width = 90
+                Height = 31
+                Align = alRight
+                Alignment = taRightJustify
+                BevelOuter = bvNone
+                Caption = 'Quantidade'
+                TabOrder = 3
+                ExplicitLeft = 618
+              end
+              object pnlTitGrdValorUnit: TPanel
+                Left = 488
+                Top = 5
+                Width = 100
+                Height = 31
+                Align = alRight
+                Alignment = taRightJustify
+                BevelOuter = bvNone
+                Caption = 'Valor Unit'#225'rio'
+                TabOrder = 4
+                ExplicitLeft = 498
+              end
+              object pnlTitGrdDescricao: TPanel
+                Left = 170
+                Top = 5
+                Width = 318
+                Height = 31
+                Align = alClient
+                Alignment = taLeftJustify
+                BevelOuter = bvNone
+                Caption = 'Descri'#231#227'o'
+                TabOrder = 5
+                ExplicitLeft = 255
+                ExplicitTop = 13
+                ExplicitWidth = 110
+              end
+            end
+            object pnlListaItens: TPanel
+              Left = 0
+              Top = 41
+              Width = 773
+              Height = 411
+              Align = alClient
+              BevelOuter = bvNone
+              TabOrder = 1
+              ExplicitLeft = 296
+              ExplicitTop = 208
+              ExplicitWidth = 185
+              ExplicitHeight = 41
+              object shpSeparadorListaItens: TShape
+                Left = 0
+                Top = 0
+                Width = 773
+                Height = 1
+                Align = alTop
+                Brush.Color = clBlack
+                Shape = stRoundRect
+              end
+              object ltbItens: TListBox
+                Left = 0
+                Top = 1
+                Width = 773
+                Height = 410
+                Align = alClient
+                BorderStyle = bsNone
+                ItemHeight = 19
+                TabOrder = 0
+              end
+            end
           end
         end
       end
