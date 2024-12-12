@@ -1,5 +1,7 @@
 program prjPDV;
 
+{$R *.dres}
+
 uses
   Vcl.Forms,
   pdv.View.Principal in 'src\View\pdv.View.Principal.pas' {frmPrincipal},
@@ -20,7 +22,10 @@ uses
   pdv.Model.Enum in 'src\model\pdv.Model.Enum.pas',
   pdv.View.Utils in 'src\utils\pdv.View.Utils.pas',
   pdv.View.Page.LoginSupervisor in 'src\View\pdv.View.Page.LoginSupervisor.pas' {PageLoginSupervisor},
-  pdv.View.Componente.Frame.ItemVenda in 'src\View\componente\pdv.View.Componente.Frame.ItemVenda.pas' {FrameItemVenda: TFrame};
+  pdv.View.Componente.Frame.ItemVenda in 'src\View\componente\pdv.View.Componente.Frame.ItemVenda.pas' {FrameItemVenda: TFrame},
+  pdv.View.Componente.Mensagem in 'src\View\componente\pdv.View.Componente.Mensagem.pas' {PageMensagem},
+  pdv.Utils.Interfaces in 'src\utils\pdv.Utils.Interfaces.pas',
+  pdv.Utils.Forms.Impl.ResourcesImages in 'src\utils\impl\pdv.Utils.Forms.Impl.ResourcesImages.pas';
 
 {$R *.res}
 
@@ -30,8 +35,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TdmDados, dmDados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TPageAberturaCaixa, PageAberturaCaixa);
-  Application.CreateForm(TPageFechamentoCaixa, PageFechamentoCaixa);
-  Application.CreateForm(TPageLoginSupervisor, PageLoginSupervisor);
   Application.Run;
 end.

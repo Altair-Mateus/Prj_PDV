@@ -172,6 +172,24 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="src\View\componente\pdv.View.Componente.Mensagem.pas">
+            <Form>PageMensagem</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\utils\pdv.Utils.Interfaces.pas"/>
+        <DCCReference Include="src\utils\impl\pdv.Utils.Forms.Impl.ResourcesImages.pas"/>
+        <RcItem Include="assert\alerta.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>alerta</ResourceId>
+        </RcItem>
+        <RcItem Include="assert\erro.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>erro</ResourceId>
+        </RcItem>
+        <RcItem Include="assert\informacoes.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>informacoes</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -198,6 +216,24 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
+                <DeployFile LocalName="assert\alerta.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assert\erro.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="assert\informacoes.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="bin\prjPDV.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>prjPDV.exe</RemoteName>

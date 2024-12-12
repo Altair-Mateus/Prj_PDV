@@ -305,8 +305,6 @@ object frmPrincipal: TfrmPrincipal
                 TabOrder = 0
                 Text = '0,850'
                 OnKeyPress = edtQuantidadeKeyPress
-                ExplicitLeft = 9
-                ExplicitTop = -10
               end
             end
           end
@@ -821,9 +819,8 @@ object frmPrincipal: TfrmPrincipal
             ParentFont = False
             TabOrder = 0
             Visible = False
-            ExplicitLeft = 0
-            ExplicitTop = 462
-            ExplicitWidth = 1183
+            ExplicitTop = 456
+            ExplicitWidth = 769
           end
           object pnlGrd: TPanel
             Left = 5
@@ -833,10 +830,8 @@ object frmPrincipal: TfrmPrincipal
             Align = alClient
             BevelOuter = bvNone
             TabOrder = 1
-            ExplicitLeft = 296
-            ExplicitTop = 232
-            ExplicitWidth = 185
-            ExplicitHeight = 41
+            ExplicitWidth = 769
+            ExplicitHeight = 451
             object pnlTituloGrd: TPanel
               Left = 0
               Top = 0
@@ -849,9 +844,7 @@ object frmPrincipal: TfrmPrincipal
               Padding.Right = 5
               Padding.Bottom = 5
               TabOrder = 0
-              ExplicitLeft = 296
-              ExplicitTop = 208
-              ExplicitWidth = 185
+              ExplicitWidth = 769
               object pnlTitGrdCodigo: TPanel
                 Left = 55
                 Top = 5
@@ -873,8 +866,6 @@ object frmPrincipal: TfrmPrincipal
                 BevelOuter = bvNone
                 Caption = 'Item'
                 TabOrder = 1
-                ExplicitLeft = 13
-                ExplicitTop = 10
               end
               object pnlTitGrdSubTotal: TPanel
                 Left = 678
@@ -886,7 +877,7 @@ object frmPrincipal: TfrmPrincipal
                 BevelOuter = bvNone
                 Caption = 'SubTotal'
                 TabOrder = 2
-                ExplicitLeft = 618
+                ExplicitLeft = 674
               end
               object pnlTitGrdQtd: TPanel
                 Left = 588
@@ -898,7 +889,7 @@ object frmPrincipal: TfrmPrincipal
                 BevelOuter = bvNone
                 Caption = 'Quantidade'
                 TabOrder = 3
-                ExplicitLeft = 618
+                ExplicitLeft = 584
               end
               object pnlTitGrdValorUnit: TPanel
                 Left = 488
@@ -910,7 +901,7 @@ object frmPrincipal: TfrmPrincipal
                 BevelOuter = bvNone
                 Caption = 'Valor Unit'#225'rio'
                 TabOrder = 4
-                ExplicitLeft = 498
+                ExplicitLeft = 484
               end
               object pnlTitGrdDescricao: TPanel
                 Left = 170
@@ -922,9 +913,7 @@ object frmPrincipal: TfrmPrincipal
                 BevelOuter = bvNone
                 Caption = 'Descri'#231#227'o'
                 TabOrder = 5
-                ExplicitLeft = 255
-                ExplicitTop = 13
-                ExplicitWidth = 110
+                ExplicitWidth = 314
               end
             end
             object pnlListaItens: TPanel
@@ -935,10 +924,8 @@ object frmPrincipal: TfrmPrincipal
               Align = alClient
               BevelOuter = bvNone
               TabOrder = 1
-              ExplicitLeft = 296
-              ExplicitTop = 208
-              ExplicitWidth = 185
-              ExplicitHeight = 41
+              ExplicitWidth = 769
+              ExplicitHeight = 410
               object shpSeparadorListaItens: TShape
                 Left = 0
                 Top = 0
@@ -957,6 +944,8 @@ object frmPrincipal: TfrmPrincipal
                 BorderStyle = bsNone
                 ItemHeight = 19
                 TabOrder = 0
+                ExplicitWidth = 769
+                ExplicitHeight = 409
               end
             end
           end

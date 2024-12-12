@@ -9,7 +9,8 @@ uses
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.jpeg, pdv.View.Login,
   Vcl.WinXCtrls, pdv.View.Page.Pagamento, pdv.View.Page.identificarCliente,
   pdv.View.Page.ImportarCliente, pdv.View.Page.AbrirCaixa, pdv.Model.cAIXA,
-  pdv.View.Page.FecharCaixa, pdv.View.Page.LoginSupervisor;
+  pdv.View.Page.FecharCaixa, pdv.View.Page.LoginSupervisor,
+  pdv.View.Componente.Mensagem;
 
 type
   TfrmPrincipal = class(TForm)
@@ -124,6 +125,8 @@ type
     procedure VerificaStatusCaixa;
     procedure InfoOperador;
 
+    procedure Confirmar(Sender: TObject);
+
   public
     { Public declarations }
   end;
@@ -191,6 +194,20 @@ begin
     end);
 end;
 
+procedure TfrmPrincipal.Confirmar(Sender: TObject);
+var
+  lTurno: TTurno;
+  lData: TDateTime;
+begin
+  lData := Now;
+  FCaixa.Id := 1;
+  FCaixa.cAIXA := 1;
+  FCaixa.Turno := lTurno.RetornaTurno(lData);
+  FCaixa.Aberto := True;
+  FCaixa.DataHoraAbertura := lData;
+  VerificaStatusCaixa;
+end;
+
 procedure TfrmPrincipal.DestroyObjetos;
 begin
   FCaixa.Free;
@@ -202,8 +219,8 @@ begin
   begin
     Key := #0;
     edtProduto.Clear;
-    Application.MessageBox('O caixa deve estar aberto!', 'Informação',
-      MB_ICONINFORMATION + MB_OK);
+    TPageMensagem.New(Self).Mensagem(pnlMaster, 'O caixa deve estar aberto!',
+      Informacao).ClickConfirmar(Confirmar);
     Exit;
   end;
 
