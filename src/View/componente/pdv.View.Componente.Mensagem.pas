@@ -37,11 +37,12 @@ type
     procedure ModelarMensagem(const aMensagem: String; aTipo: TTipoMensagem);
     procedure TipoMensagem(aTipo: TTipoMensagem);
   public
-    function Mensagem(aParent: TPanel; const aMensagem: String;
-      aTipo: TTipoMensagem): TPageMensagem;
-    procedure ClickOk(Proc: TProc<TObject>);
-    procedure ClickConfirmar(Proc: TProc<TObject>);
-    procedure ClickCancelar(Proc: TProc<TObject>);
+    function Mensagem(const aMensagem: String; aTipo: TTipoMensagem)
+      : TPageMensagem;
+    function Embed(AParent: TPanel): TPageMensagem;
+    function ClickOk(Proc: TProc<TObject>): TPageMensagem;
+    function ClickConfirmar(Proc: TProc<TObject>): TPageMensagem;
+    function ClickCancelar(Proc: TProc<TObject>): TPageMensagem;
     class function New(AOwner: TComponent): TPageMensagem;
   end;
 
@@ -70,19 +71,28 @@ begin
   Self.RemoveObject;
 end;
 
-procedure TPageMensagem.ClickCancelar(Proc: TProc<TObject>);
+function TPageMensagem.ClickCancelar(Proc: TProc<TObject>): TPageMensagem;
 begin
   FProc := Proc;
+  Result := Self;
 end;
 
-procedure TPageMensagem.ClickConfirmar(Proc: TProc<TObject>);
+function TPageMensagem.ClickConfirmar(Proc: TProc<TObject>): TPageMensagem;
 begin
   FProc := Proc;
+  Result := Self;
 end;
 
-procedure TPageMensagem.ClickOk(Proc: TProc<TObject>);
+function TPageMensagem.ClickOk(Proc: TProc<TObject>): TPageMensagem;
 begin
   FProc := Proc;
+  Result := Self;
+end;
+
+function TPageMensagem.Embed(AParent: TPanel): TPageMensagem;
+begin
+  Self.AddObject(AParent);
+  Result := Self;
 end;
 
 procedure TPageMensagem.FormShow(Sender: TObject);
@@ -90,11 +100,10 @@ begin
   Responsive;
 end;
 
-function TPageMensagem.Mensagem(aParent: TPanel; const aMensagem: String;
-  aTipo: TTipoMensagem): TPageMensagem;
+function TPageMensagem.Mensagem(const aMensagem: String; aTipo: TTipoMensagem)
+  : TPageMensagem;
 begin
   ModelarMensagem(aMensagem, aTipo);
-  Self.AddObject(aParent);
   Result := Self;
 end;
 
@@ -103,7 +112,6 @@ procedure TPageMensagem.ModelarMensagem(const aMensagem: String;
 begin
   memMensagem.Text := aMensagem;
   TipoMensagem(aTipo);
-
 end;
 
 class function TPageMensagem.New(AOwner: TComponent): TPageMensagem;

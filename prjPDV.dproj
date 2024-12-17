@@ -178,6 +178,7 @@
         </DCCReference>
         <DCCReference Include="src\utils\pdv.Utils.Interfaces.pas"/>
         <DCCReference Include="src\utils\impl\pdv.Utils.Forms.Impl.ResourcesImages.pas"/>
+        <DCCReference Include="src\utils\pdv.View.TrataExceptions.pas"/>
         <RcItem Include="assert\alerta.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>alerta</ResourceId>

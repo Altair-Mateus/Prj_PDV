@@ -17,6 +17,7 @@ object frmPrincipal: TfrmPrincipal
   OnShow = FormShow
   TextHeight = 19
   object pnlMaster: TPanel
+    Tag = 255
     Left = 0
     Top = 0
     Width = 1183
@@ -936,6 +937,7 @@ object frmPrincipal: TfrmPrincipal
                 Shape = stRoundRect
               end
               object ltbItens: TListBox
+                Tag = 255
                 Left = 0
                 Top = 1
                 Width = 773

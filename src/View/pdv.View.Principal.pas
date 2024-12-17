@@ -219,8 +219,8 @@ begin
   begin
     Key := #0;
     edtProduto.Clear;
-    TPageMensagem.New(Self).Mensagem(pnlMaster, 'O caixa deve estar aberto!',
-      Informacao).ClickConfirmar(Confirmar);
+    TPageMensagem.New(Self).Embed(pnlMaster).Mensagem('O caixa deve estar aberto!', Informacao)
+      .ClickConfirmar(Confirmar);
     Exit;
   end;
 

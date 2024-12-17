@@ -56,7 +56,7 @@ begin
   lCaixa := TCaixa.New;
   try
     lCaixa.Id := 1;
-    lCaixa.cAIXA := 1;
+    lCaixa.cAIXA := StrToInt('');
     lCaixa.Turno := lTurno.RetornaTurno(lData);
     lCaixa.Aberto := True;
     lCaixa.DataHoraAbertura := lData;
@@ -65,8 +65,8 @@ begin
     FProc(lCaixa);
   finally
     lCaixa.Free;
-    Self.RemoveObject;
   end;
+  Self.RemoveObject;
 end;
 
 procedure TPageAberturaCaixa.btnAbrirCaixaClick(Sender: TObject);

@@ -49,9 +49,6 @@ object PageMensagem: TPageMensagem
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 112
-      ExplicitTop = 64
-      ExplicitWidth = 185
       object imgMensagem: TImage
         Left = 0
         Top = 0
@@ -71,8 +68,6 @@ object PageMensagem: TPageMensagem
       Padding.Left = 5
       Padding.Right = 5
       TabOrder = 1
-      ExplicitTop = 232
-      ExplicitWidth = 289
       object pnlBtnCancelar: TPanel
         Left = 5
         Top = 0
@@ -119,7 +114,6 @@ object PageMensagem: TPageMensagem
         BevelOuter = bvNone
         TabOrder = 1
         Visible = False
-        ExplicitLeft = 5
         object shpBtnConfirmar: TShape
           Left = 0
           Top = 0
@@ -157,7 +151,6 @@ object PageMensagem: TPageMensagem
         BevelOuter = bvNone
         TabOrder = 2
         Visible = False
-        ExplicitLeft = 5
         object shpBtnOk: TShape
           Left = 0
           Top = 0
@@ -195,10 +188,6 @@ object PageMensagem: TPageMensagem
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitLeft = 112
-      ExplicitTop = 64
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object memMensagem: TMemo
         AlignWithMargins = True
         Left = 3
@@ -209,10 +198,6 @@ object PageMensagem: TPageMensagem
         BorderStyle = bsNone
         ReadOnly = True
         TabOrder = 0
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 400
-        ExplicitHeight = 88
       end
     end
   end

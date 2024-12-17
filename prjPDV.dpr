@@ -25,7 +25,8 @@ uses
   pdv.View.Componente.Frame.ItemVenda in 'src\View\componente\pdv.View.Componente.Frame.ItemVenda.pas' {FrameItemVenda: TFrame},
   pdv.View.Componente.Mensagem in 'src\View\componente\pdv.View.Componente.Mensagem.pas' {PageMensagem},
   pdv.Utils.Interfaces in 'src\utils\pdv.Utils.Interfaces.pas',
-  pdv.Utils.Forms.Impl.ResourcesImages in 'src\utils\impl\pdv.Utils.Forms.Impl.ResourcesImages.pas';
+  pdv.Utils.Forms.Impl.ResourcesImages in 'src\utils\impl\pdv.Utils.Forms.Impl.ResourcesImages.pas',
+  pdv.View.TrataExceptions in 'src\utils\pdv.View.TrataExceptions.pas';
 
 {$R *.res}
 
